@@ -1,6 +1,6 @@
 import './home.css';
-import logo from './Imagens/Logo-Banco-estado.svg';
-import login from './Imagens/user-login.png';
+import logo from '../img/bancoestado-logo.png'
+import entrar from '../img/Frame.svg';
 import imagemhome from './Imagens/Imagem-Home.svg';
 
 function home() {
@@ -11,7 +11,7 @@ function home() {
                 <div className='Container-superior'>
                 <img className='logo' src={logo}/>
                 <button id='Entrar' > 
-                <img className='home-login' src={login} alt="" />
+                <img className='home-login' src={entrar} alt="" />
                 <p className='entrar'> Entrar </p> </button>
                 </div>
             <div className='container-inferior'>
