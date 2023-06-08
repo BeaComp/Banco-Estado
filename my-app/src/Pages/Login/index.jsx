@@ -8,6 +8,9 @@ function Login() {
 
     return (
         <div className="page-login">
+            <div className="quadrado">
+                
+            </div>
             
             <div className="login">
                 <img  className="imgLogo" src={logo} alt="Banco Estado" />

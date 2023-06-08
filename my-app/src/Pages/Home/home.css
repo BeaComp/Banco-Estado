@@ -5,7 +5,7 @@
     top: 0px;
     height: 75px;
     width: 100%;
-    background-color: #585A5C;
+    background-color: #D9D9D9;
     ;
 }
 
@@ -83,7 +83,7 @@
     bottom: 0px;
     height: 50px;
     width: 100%;
-    background-color: #585A5C;
+    background-color: #D9D9D9;
     position: fixed;
     font-family: 'Poppins';
     font-style: normal;
@@ -92,7 +92,7 @@
     line-height: 21px;
     display: flex;
     align-items: center;
-    color: #FFFFFF;
+    color: #6a6969;
     align-items: center;
     justify-content: center;
     }
