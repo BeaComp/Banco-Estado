@@ -10,7 +10,7 @@ function Login() {
         <div className="page-login">
             
             <div className="login">
-                <img src={logo} alt="Banco Estado" />
+                <img  className="imgLogo" src={logo} alt="Banco Estado" />
                 <p className="login-title">Entre com seus dados:</p>
 
                 <form className="form" autoComplete="none">

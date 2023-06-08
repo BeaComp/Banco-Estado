@@ -1,12 +1,16 @@
 
-.login {
-    margin-top: 119px;
-    margin-left: 380px;
-}
 
 .page-login {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.imgLogo {
+    display: flex;
 }
 
 .form {
@@ -14,7 +18,7 @@
     width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .login-title {
@@ -22,6 +26,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 16px;
+    display: flex;
 }
 
 .form-control label {
@@ -31,6 +36,7 @@
     font-size: 14px;
     margin-top: 6px;
     display: flex;
+    align-items: flex-start;
 }
 
 .form-control {
