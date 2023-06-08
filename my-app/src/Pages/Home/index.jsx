@@ -2,15 +2,18 @@ import './home.css';
 import logo from '../img/bancoestado-logo.png'
 import entrar from '../img/Frame.svg';
 import imagemhome from './Imagens/Imagem-Home.svg';
+import { useNavigate } from "react-router-dom";
 
-function home() {
+function Home() {
+    const navigate = useNavigate()
     return (
+
       <div className="Home">
         <header className='header'></header>
             <div className='container-principal'>
                 <div className='Container-superior'>
                 <img className='logo' src={logo}/>
-                <button id='Entrar' > 
+                <button onClick={() => {navigate('/login')}} id='Entrar' > 
                 <img className='home-login' src={entrar} alt="" />
                 <p className='entrar'> Entrar </p> </button>
                 </div>
@@ -25,4 +28,4 @@ function home() {
       </div>
     );
   }
-  export default home;
+  export default Home;
