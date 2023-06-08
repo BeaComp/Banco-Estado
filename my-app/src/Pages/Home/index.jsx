@@ -11,7 +11,7 @@ function home() {
                 <div className='Container-superior'>
                 <img className='logo' src={logo}/>
                 <button id='Entrar' > 
-                <img className='login' src={login} alt="" />
+                <img className='home-login' src={login} alt="" />
                 <p className='entrar'> Entrar </p> </button>
                 </div>
             <div className='container-inferior'>
