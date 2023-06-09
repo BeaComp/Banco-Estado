@@ -33,14 +33,12 @@ import buttonHome from './img/button-home.svg';
             ChevronContas.style.display = 'none';;
             Chevronimg.style.rotate = '0deg';
             ChevronContas1.style.fontWeight = 'inherit';
-            ChevronContas.style.fontWeight = 'inherit';
-            
         }
         else{
             ChevronContas.style.display = 'block';
             Chevronimg.style.rotate = '180deg';
             ChevronContas1.style.fontWeight = 'bold';
-            ChevronContas.style.fontWeight = 'bold';
+            
         }
     }
 
@@ -51,13 +49,11 @@ import buttonHome from './img/button-home.svg';
         if(ChevronContas.style.display === 'block') {
             ChevronContas.style.display = 'none';;
             Chevronimg.style.rotate = '0deg';
-            ChevronContas.style.fontWeight = 'inherit';
             ChevronContas1.style.fontWeight = 'inherit';
         }
         else{
             ChevronContas.style.display = 'block';
             Chevronimg.style.rotate = '180deg';
-            ChevronContas.style.fontWeight = 'bold';
             ChevronContas1.style.fontWeight = 'bold';
         }
     }
@@ -65,15 +61,11 @@ import buttonHome from './img/button-home.svg';
     function AbrirOpcoestransferencia() {
         var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-2-1');
         var Chevronimg = document.querySelector('#BtnChevrontransferencia');
-        var texto = document.querySelector('.EntradaCliente-container-opcoes-2-1-transferencias p');
-        var texto2 = document.querySelector('#EntradaCliente-container-opcoes-2-1-transferencias');
         var color = document.querySelector('.EntradaCliente-container-opcoes-1-color');
         var texto3 = document.querySelector('.EntradaCliente-container-opcoes-1-color p')
         if(ChevronContas.style.display === 'block') {
             ChevronContas.style.display = 'none';;
             Chevronimg.style.rotate = '0deg';
-            texto.style.fontWeight = 'inherit';
-            texto2.style.fontWeight = 'inherit';
             color.style.backgroundColor = 'rgb(248 245 241)';
             texto3.style.color = '#3E3E3E';
             texto3.style.fontWeight = 'inherit';
@@ -81,8 +73,6 @@ import buttonHome from './img/button-home.svg';
         else{
             ChevronContas.style.display = 'block';
             Chevronimg.style.rotate = '180deg';
-            texto.style.fontWeight = 'bold';
-            texto2.style.fontWeight = 'bold';
             color.style.backgroundColor = '#FF9E33';
             texto3.style.color = '#FFFFFF';
             texto3.style.fontWeight = 'bold';
