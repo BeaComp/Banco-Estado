@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import './login.css';
 
 import logo from '../img/bancoestado-logo.png'
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate()
 
     const [nConta, setNConta] = useState("");
     const [password, setPassword] = useState("");
@@ -51,7 +53,7 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}/>
                     </div>
 
-                    <button id="btnEntrar" type="submit">Entrar</button>
+                    <button id="btnEntrar" type="submit" onClick={() => {navigate('/Sistema')}} >Entrar</button>
                 </form>
 
             </div>
