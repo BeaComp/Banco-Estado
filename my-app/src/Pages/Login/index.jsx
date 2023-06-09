@@ -30,7 +30,7 @@ function Login() {
                 <p className="login-title">Entre com seus dados:</p>
 
                 <form className="form" autoComplete="none" onSubmit={handleSubmit}>
-                    <div className="form-control">
+                    <div className="forms">
                         <label htmlFor="numeroConta">Número da Conta:</label>
                         <input 
                             id="numberConta" 
@@ -42,7 +42,7 @@ function Login() {
                             onChange={(e) => setNConta(e.target.value)} />
                     </div>
 
-                    <div className="form-control">
+                    <div className="forms">
                         <label htmlFor="password">Senha:</label>
                         <input 
                             id="password" 
