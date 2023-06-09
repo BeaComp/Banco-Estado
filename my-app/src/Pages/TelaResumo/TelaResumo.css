@@ -99,15 +99,16 @@ li {
     display: flex;
     padding-top: 5px;
     padding-bottom: 5px;
+    align-items: center;
+    height: 50px;
 }
 
 li p {
     margin-left: 10px;
-
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-
+    margin-bottom: 0px;
     color: #3E3E3E;
 }

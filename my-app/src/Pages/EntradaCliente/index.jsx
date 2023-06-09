@@ -163,7 +163,9 @@ function EntradaCliente() {
                         <p>Contatos</p>
                     </div>
                 </div>
-                <TelaResumo />
+                    <div className ='telaresumo'>
+                        <TelaResumo />
+                    </div>
             </div>
         </div>
 
