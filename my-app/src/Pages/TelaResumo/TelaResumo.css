@@ -39,6 +39,8 @@
     height: 70px;
     border-radius: 5px;
     background: #F6F6F6;
+    margin-top: 22px;
+    margin-bottom: 7px;
 }
 
 .conta-poupanca p {
@@ -82,12 +84,16 @@
     margin-right: 17px;
 }
 
+.componentes p {
+    margin-bottom: 0;
+}
+
 .acesso-itens {
     width: 254px;
     
-
+    margin-top: 12px;
     background: #F6F6F6;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 ul {
