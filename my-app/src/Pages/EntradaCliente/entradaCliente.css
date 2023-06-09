@@ -108,6 +108,8 @@
     color: #3E3E3E;
     margin-left: 17px;
     font-weight: inherit;
+    cursor: pointer;
+    margin-bottom: 0px;
 }
 
 .EntradaCliente-container-opcoes-1 img, .EntradaCliente-container-opcoes-2 img {
