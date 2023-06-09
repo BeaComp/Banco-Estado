@@ -53,13 +53,39 @@ import buttonHome from './img/button-home.svg';
             Chevronimg.style.rotate = '0deg';
             ChevronContas.style.fontWeight = 'inherit';
             ChevronContas1.style.fontWeight = 'inherit';
-            
         }
         else{
             ChevronContas.style.display = 'block';
             Chevronimg.style.rotate = '180deg';
             ChevronContas.style.fontWeight = 'bold';
             ChevronContas1.style.fontWeight = 'bold';
+        }
+    }
+
+    function AbrirOpcoestransferencia() {
+        var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-2-1');
+        var Chevronimg = document.querySelector('#BtnChevrontransferencia');
+        var texto = document.querySelector('.EntradaCliente-container-opcoes-2-1-transferencias p');
+        var texto2 = document.querySelector('#EntradaCliente-container-opcoes-2-1-transferencias');
+        var color = document.querySelector('.EntradaCliente-container-opcoes-1-color');
+        var texto3 = document.querySelector('.EntradaCliente-container-opcoes-1-color p')
+        if(ChevronContas.style.display === 'block') {
+            ChevronContas.style.display = 'none';;
+            Chevronimg.style.rotate = '0deg';
+            texto.style.fontWeight = 'inherit';
+            texto2.style.fontWeight = 'inherit';
+            color.style.backgroundColor = 'rgb(248 245 241)';
+            texto3.style.color = '#3E3E3E';
+            texto3.style.fontWeight = 'inherit';
+        }
+        else{
+            ChevronContas.style.display = 'block';
+            Chevronimg.style.rotate = '180deg';
+            texto.style.fontWeight = 'bold';
+            texto2.style.fontWeight = 'bold';
+            color.style.backgroundColor = '#FF9E33';
+            texto3.style.color = '#FFFFFF';
+            texto3.style.fontWeight = 'bold';
         }
     }
 
@@ -85,13 +111,13 @@ function EntradaCliente() {
             <div className='EntradaCliente-container-principal-lateral'>
                                     {/*Opções de Conta*/}
                 <div className='EntradaCliente-container-opcoes-1 EntradaCliente-container-opcoes-2-1-color' >
-                    <p>Contas</p>
+                    <p onClick={AbrirOpcoes1}>Contas</p>
                     <img id='BtnChevronContas' src={Chevron} alt="Chevron" onClick={AbrirOpcoes1} />
                 </div>
                                 {/*Opções de Conta corrente*/}
                     <div className='EntradaCliente-container-opcoes-2-1' >
                         <div className='EntradaCliente-container-opcoes-2'>
-                            <p>Conta corrente</p>
+                            <p onClick={AbrirOpcoesContacorrente}>Conta corrente</p>
                             <img id='BtnChevronCorrente' src={Chevron} alt="Chevron" onClick={AbrirOpcoesContacorrente} />
                         </div>
                                 {/*Opções de Conta corrente - Saldo - movimentos*/}
@@ -108,7 +134,7 @@ function EntradaCliente() {
 
                                 {/*Opções de Conta poupança*/}
                         <div className='EntradaCliente-container-opcoes-2' id='EntradaCliente-container-opcoes-2'>
-                            <p>Conta poupança</p>
+                            <p onClick={AbrirOpcoesContapoupanca}>Conta poupança</p>
                             <img id='BtnChevronPoupanca' src={Chevron} alt="Chevron" onClick={AbrirOpcoesContapoupanca}/>
                         </div>
 
@@ -124,10 +150,19 @@ function EntradaCliente() {
                         </div>
 
                     </div>
-                <div className='EntradaCliente-container-opcoes-1'>
-                    <p>Transferências</p>
-                    <img src={Chevron} alt="Chevron" />
+                <div className='EntradaCliente-container-opcoes-1 EntradaCliente-container-opcoes-1-color' >
+                    <p onClick={AbrirOpcoestransferencia} >Transferências</p>
+                    <img id='BtnChevrontransferencia' src={Chevron} alt="Chevron" onClick={AbrirOpcoestransferencia}/>
                 </div>
+                                        {/*Opções de Transferencia*/}
+                        <div className='EntradaCliente-container-opcoes-2-2-1'>
+                            <div className='EntradaCliente-container-opcoes-2-1-transferencias'>
+                                <p>Transferir</p>
+                            </div>
+                            <div className='EntradaCliente-container-opcoes-2-1-transferencias' id='EntradaCliente-container-opcoes-2-1-transferencias'>
+                                <p>Resumo Transferências</p>
+                            </div>
+                        </div>
                 <div className='EntradaCliente-container-opcoes'>
                     <p>Empréstimos</p>
                 </div>
