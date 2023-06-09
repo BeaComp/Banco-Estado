@@ -1,12 +1,17 @@
 import React from "react";
 import './breadcrumb.css';
+import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-const Breadcrumb = () => {
+const BreadcrumbSistema = () => {
     return (
-        <div className="componentes">
-           
-        </div>
-    )
+        <Breadcrumb>
+          <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+          <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+            Library
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>Data</Breadcrumb.Item>
+        </Breadcrumb>
+      );
 }
 
-export default Breadcrumb;
+export default BreadcrumbSistema;
