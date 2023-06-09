@@ -5,7 +5,7 @@
     top: 0px;
     height: 75px;
     width: 100%;
-    background-color: #D9D9D9;
+    background-color: #585A5C;
     padding-top: 8px;
 }
 
@@ -73,8 +73,6 @@
     
 }
 
-
-
 .imagem-home{
     margin-right: 222px;
 }
@@ -91,7 +89,7 @@
     bottom: 0px;
     height: 50px;
     width: 100%;
-    background-color: #D9D9D9;
+    background-color: #585A5C;
     position: fixed;
     font-family: 'Poppins';
     font-style: normal;
@@ -100,7 +98,7 @@
     line-height: 21px;
     display: flex;
     align-items: center;
-    color: #6a6969;
+    color: #FFFFFF;
     align-items: center;
     justify-content: center;
     }
