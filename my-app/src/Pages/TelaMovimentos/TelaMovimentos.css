@@ -2,9 +2,10 @@
 
 
 .tela-movimentos {
-    margin-left: 376px;
-    margin-right: 173px;
-    margin-top: 139px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 60px;
+    width: 800px;
 }
 
 .tela-movimentos h1 {
