@@ -1,9 +1,10 @@
 .tela-resumo {
-    margin-left: 376px;
+    margin-left: 238px;
     margin-right: 173px;
     margin-top: 139px;
     display: flex;
     justify-content: space-around;
+    gap: 50px;
 }
 
 .tela-resumo h1 {
