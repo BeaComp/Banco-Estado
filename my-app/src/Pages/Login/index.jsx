@@ -5,8 +5,8 @@ import logo from '../img/bancoestado-logo.png'
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const navigate = useNavigate()
 
+    const navigate = useNavigate();
     const [nConta, setNConta] = useState("");
     const [password, setPassword] = useState("");
 
