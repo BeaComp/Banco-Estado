@@ -6,8 +6,10 @@
     height: 75px;
     width: 100%;
     background-color: #D9D9D9;
-    ;
+    padding-top: 8px;
 }
+
+
 
 /*Container principal*/
 
@@ -45,12 +47,16 @@
 .home-login {
     width: 20px ;
     height: 20px;
-    margin-right: 20px;
+    margin-right: 0;
+    margin-left: 14px;
 }
 
 .entrar{
     color: #ffff;
+    margin: auto;
 }
+
+
 
 /*Container-inferior*/
 
@@ -60,12 +66,14 @@
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
-    line-height: 27px;
     color: #FD8C0C;
     width: 233px;
     height: 52px;
     text-align: start;
+    
 }
+
+
 
 .imagem-home{
     margin-right: 222px;

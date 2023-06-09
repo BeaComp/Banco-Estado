@@ -3,6 +3,8 @@ import './TelaMovimentos.css';
 import iconBuscar from '../img/icon-buscar.svg'
 import iconFiltro from '../img/icon-filtro.svg'
 import iconBaixar from '../img/icon-baixar.svg'
+import TableMovimentos from "../../components/TableMovimentos";
+
 
 
 const TelaMovimentos = () => {
@@ -32,6 +34,11 @@ const TelaMovimentos = () => {
                 </div>
 
             </div>
+
+            <div className="table">
+                <TableMovimentos />
+            </div>
+              
         </div>
     )
 }

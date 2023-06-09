@@ -1,4 +1,6 @@
 
+
+
 .tela-movimentos {
     margin-left: 376px;
     margin-right: 173px;
@@ -43,6 +45,13 @@
     border: none;
     cursor: pointer;
     padding-left: 0px;
+    
+}
+
+#buscar {
+    margin-bottom: 7px;
+    padding-bottom: 16px;
+    padding-top: 13px;
 }
 
 #btnFiltro {
@@ -59,7 +68,7 @@
     font-weight: 600;
     font-size: 14px;
 
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,7 +84,7 @@
 #btnFiltro img {
     padding: 2px;
     padding-left: 8px;
-   
+
 }
 
 #btnBaixar img {
@@ -97,10 +106,33 @@
     font-weight: 600;
     font-size: 14px;
 
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
 
     color: #FD8C0C;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table thead>tr>th {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+
+    color: #3E3E3E;
+}
+
+.table tbody>tr>th {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+
+    color: #3E3E3E;
+
 }

@@ -29,9 +29,11 @@
     font-weight: 600;
     font-size: 16px;
     display: flex;
+    margin-top: 15px;
 }
 
-.form-control label {
+
+.forms label {
     color: #3E3E3E;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
@@ -39,30 +41,35 @@
     margin-top: 6px;
     display: flex;
     align-items: flex-start;
+    padding-bottom: 10px;
 }
 
-.form-control {
+.forms {
     display: flex;
     flex-direction: column;
+    
+    
 }
 
-.form-control input {
+.forms input {
     border: 1px solid #3E3E3E;
     box-shadow: 0 0 0 0;
     outline: 0;
     border-top: none;
     border-left: none;
     border-right: none;
-    height: 15px;
+    height: 23px;
     width: 239px;
     padding: 5px 10px;
+    padding-bottom: 15px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.form-control input::placeholder {
+.forms input::placeholder {
     color: #C4C4C4;
     opacity: 0.6;
+    
 }
 
 #btnEntrar {
