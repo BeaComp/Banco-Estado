@@ -13,7 +13,7 @@ function Home() {
             <div className='container-principal'>
                 <div className='Container-superior'>
                 <img className='logo' src={logo}/>
-                <button onClick={() => {navigate('/login')}} id='Entrar' > 
+                <button id='Entrar' onClick={() => {navigate('/login')}}  > 
                 <img className='home-login' src={entrar} alt="" />
                 <p className='entrar'> Entrar </p> </button>
                 </div>
