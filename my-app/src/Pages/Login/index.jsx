@@ -53,7 +53,7 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}/>
                     </div>
 
-                    <button id="btnEntrar" type="submit" onClick={() => {navigate('/Sistema')}} >Entrar</button>
+                    <button id="btnEntrar" type="submit" onClick={() => {navigate('/Sistema')} } >Entrar</button>
                 </form>
 
             </div>
