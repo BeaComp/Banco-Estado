@@ -14,44 +14,52 @@ import buttonHome from './img/button-home.svg';
             Chevronimg.style.rotate = '0deg';
             Color.style.backgroundColor = 'rgb(248 245 241)';
             Text.style.color = '#3E3E3E';
-            ChevronContas.style.fontWeight = 'inherit';
+            Text.style.fontWeight = 'inherit';
         }
         else{
             ChevronContas.style.display = 'block';
             Chevronimg.style.rotate = '180deg';
             Color.style.backgroundColor = '#FF9E33';
             Text.style.color = '#FFFFFF';
-            ChevronContas.style.fontWeight = 'bold';
+            Text.style.fontWeight = 'bold';
         }
     };
 
     function AbrirOpcoesContacorrente() {
         var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1-1');
+        var ChevronContas1 = document.querySelector('.EntradaCliente-container-opcoes-2')
         var Chevronimg = document.querySelector('#BtnChevronCorrente');
         if(ChevronContas.style.display === 'block') {
             ChevronContas.style.display = 'none';;
             Chevronimg.style.rotate = '0deg';
+            ChevronContas1.style.fontWeight = 'inherit';
             ChevronContas.style.fontWeight = 'inherit';
+            
         }
         else{
             ChevronContas.style.display = 'block';
             Chevronimg.style.rotate = '180deg';
+            ChevronContas1.style.fontWeight = 'bold';
             ChevronContas.style.fontWeight = 'bold';
         }
     }
 
     function AbrirOpcoesContapoupanca() {
         var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1-2');
+        var ChevronContas1 = document.querySelector('#EntradaCliente-container-opcoes-2')
         var Chevronimg = document.querySelector('#BtnChevronPoupanca');
         if(ChevronContas.style.display === 'block') {
             ChevronContas.style.display = 'none';;
             Chevronimg.style.rotate = '0deg';
             ChevronContas.style.fontWeight = 'inherit';
+            ChevronContas1.style.fontWeight = 'inherit';
+            
         }
         else{
             ChevronContas.style.display = 'block';
             Chevronimg.style.rotate = '180deg';
             ChevronContas.style.fontWeight = 'bold';
+            ChevronContas1.style.fontWeight = 'bold';
         }
     }
 
@@ -99,7 +107,7 @@ function EntradaCliente() {
                         </div>
 
                                 {/*Opções de Conta poupança*/}
-                        <div className='EntradaCliente-container-opcoes-2'>
+                        <div className='EntradaCliente-container-opcoes-2' id='EntradaCliente-container-opcoes-2'>
                             <p>Conta poupança</p>
                             <img id='BtnChevronPoupanca' src={Chevron} alt="Chevron" onClick={AbrirOpcoesContapoupanca}/>
                         </div>
