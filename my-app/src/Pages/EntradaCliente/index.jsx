@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import TelaSaldoPoupanca from '../TelaSaldo/ContaPoupanca';
 import TelaSaldoCorrente from '../TelaSaldo/ContaCorrente';
+import TelaContatos from '../TelaContatos';
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -185,7 +186,7 @@ function EntradaCliente() {
                         <p>Empréstimos</p>
                     </div>
                     <div className='EntradaCliente-container-opcoes'>
-                        <p>Contatos</p>
+                        <p  onClick={() => alternarTela('tela5')}  >Contatos</p>
                     </div>
                 </div>
 
@@ -197,6 +198,7 @@ function EntradaCliente() {
                     {telaAtual === 'tela2' && <TelaMovimentos />}
                     {telaAtual === 'tela3' && <TelaSaldoPoupanca />}
                     {telaAtual === 'tela4' && <TelaSaldoCorrente />}
+                    {telaAtual === 'tela5' && <TelaContatos />}
                 </div>
             </div>
         </div>
