@@ -101,16 +101,19 @@
     font-weight: inherit;
 }
 
-.EntradaCliente-container-opcoes {
+.EntradaCliente-container-opcoes, .EntradaCliente-container-opcoes-contatos {
     height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+}
+
+.EntradaCliente-container-opcoes-contatos {
+    background-color: inherit;
 }
 
 .EntradaCliente-container-opcoes-1 p, .EntradaCliente-container-opcoes p,
-.EntradaCliente-container-opcoes-2 p {
+.EntradaCliente-container-opcoes-contatos p, .EntradaCliente-container-opcoes-2 p {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -152,7 +155,7 @@ button {
     display: none;
 }
 
-.EntradaCliente-container-opcoes-2-1-corrente {
+.EntradaCliente-container-opcoes-2-1-corrente-saldo, .EntradaCliente-container-opcoes-2-1-corrente-movimentos {
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -161,7 +164,7 @@ button {
     background: #ffffff; 
 }
 
-.EntradaCliente-container-opcoes-2-1-corrente p {
+.EntradaCliente-container-opcoes-2-1-corrente-saldo p, .EntradaCliente-container-opcoes-2-1-corrente-movimentos p {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -174,6 +177,8 @@ button {
     margin-bottom: 0;
 }
 
+
+
 .EntradaCliente-container-opcoes-2-1-1 {
     display: none;
 
@@ -183,7 +188,7 @@ button {
     display: none;
 }
 
-.EntradaCliente-container-opcoes-2-1-poupanca {
+.EntradaCliente-container-opcoes-2-1-poupanca-saldo, .EntradaCliente-container-opcoes-2-1-poupanca-movimentos {
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -192,7 +197,7 @@ button {
     background: #ffffff;
 }
 
-.EntradaCliente-container-opcoes-2-1-poupanca p {
+.EntradaCliente-container-opcoes-2-1-poupanca-saldo p, .EntradaCliente-container-opcoes-2-1-poupanca-movimentos p {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;

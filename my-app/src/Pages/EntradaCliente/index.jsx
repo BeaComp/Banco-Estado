@@ -98,7 +98,55 @@ function EntradaCliente() {
     // Função para alternar entre as telas
     const alternarTela = (tela) => {
         setTelaAtual(tela);
+
+        var texto = document.querySelector('.EntradaCliente-container-opcoes-2-1-corrente-saldo p')
+        var texto2 = document.querySelector('.EntradaCliente-container-opcoes-2-1-corrente-movimentos p')
+        var texto3 = document.querySelector('.EntradaCliente-container-opcoes-2-1-poupanca-saldo p')
+        var cor = document.querySelector('.EntradaCliente-container-opcoes-contatos')
+        var textocor = document.querySelector('.EntradaCliente-container-opcoes-contatos p')
+        if (tela === 'tela4') {
+            texto.style.fontWeight = 'bold';
+            texto2.style.fontWeight = 'inherit';
+            texto3.style.fontWeight = 'inherit';
+            cor.style.backgroundColor = 'inherit';
+            textocor.style.fontWeight = 'inherit';
+            textocor.style.color = '#3E3E3E';
+        }
+        else if (tela === 'tela2') {
+            texto2.style.fontWeight = 'bold';
+            texto.style.fontWeight = 'inherit';
+            texto3.style.fontWeight = 'inherit';
+            cor.style.backgroundColor = 'inherit';
+            textocor.style.fontWeight = 'inherit';
+            textocor.style.color = '#3E3E3E';
+        }
+        else if (tela == 'tela3'){
+            texto3.style.fontWeight = 'bold';
+            texto.style.fontWeight = 'inherit';
+            texto2.style.fontWeight = 'inherit';
+            cor.style.backgroundColor = 'inherit';
+            textocor.style.fontWeight = 'inherit';
+            textocor.style.color = '#3E3E3E';
+        }
+        else if (tela == 'tela5') {
+            cor.style.backgroundColor = '#FF9E33';
+            textocor.style.fontWeight = 'bold';
+            textocor.style.color = '#FFFFFF';
+            texto.style.fontWeight = 'inherit';
+            texto2.style.fontWeight = 'inherit';
+            texto3.style.fontWeight = 'inherit';
+        }
+        else {
+            texto.style.fontWeight = 'inherit';
+            texto2.style.fontWeight = 'inherit';
+            texto3.style.fontWeight = 'inherit';
+            cor.style.backgroundColor = 'inherit';
+            textocor.style.fontWeight = 'inherit';
+            textocor.style.color = '#3E3E3E';
+        }
     };
+
+    
 
 
     return (
@@ -142,12 +190,12 @@ function EntradaCliente() {
                         </div>
                         {/*Opções de Conta corrente - Saldo - movimentos*/}
                         <div className='EntradaCliente-container-opcoes-2-1-1'>
-                            <div className='EntradaCliente-container-opcoes-2-1-corrente'>
+                            <div className='EntradaCliente-container-opcoes-2-1-corrente-saldo'>
                                 <p  onClick={() => alternarTela('tela4')}>Saldo</p>
                             </div>
 
                             {/*Opções de Conta poupança*/}
-                            <div className='EntradaCliente-container-opcoes-2-1-corrente'>
+                            <div className='EntradaCliente-container-opcoes-2-1-corrente-movimentos'>
                                 <p  onClick={() => alternarTela('tela2')} >Movimentos</p>
 
                             </div>
@@ -160,12 +208,12 @@ function EntradaCliente() {
                         </div>
 
                         <div className='EntradaCliente-container-opcoes-2-1-2'>
-                            <div className='EntradaCliente-container-opcoes-2-1-poupanca'>
+                            <div className='EntradaCliente-container-opcoes-2-1-poupanca-saldo'>
                                 <p  onClick={() => alternarTela('tela3')} >Saldo</p>
                             </div>
 
                             {/*Opções de Conta poupança*/}
-                            <div className='EntradaCliente-container-opcoes-2-1-poupanca'>
+                            <div className='EntradaCliente-container-opcoes-2-1-poupanca-movimentos'>
                                 <p onClick={() => alternarTela('tela2')} >Movimentos</p>
                             </div>
                         </div>
@@ -185,15 +233,14 @@ function EntradaCliente() {
                     <div className='EntradaCliente-container-opcoes'>
                         <p>Empréstimos</p>
                     </div>
-                    <div className='EntradaCliente-container-opcoes'>
-                        <p  onClick={() => alternarTela('tela5')}  >Contatos</p>
+                    <div className='EntradaCliente-container-opcoes-contatos'>
+                        <p  onClick={() => alternarTela('tela5')} >Contatos</p>
                     </div>
                 </div>
 
                 
 
                 <div className='telaresumo'>
-
                     {telaAtual === 'tela1' && <TelaResumo />}
                     {telaAtual === 'tela2' && <TelaMovimentos />}
                     {telaAtual === 'tela3' && <TelaSaldoPoupanca />}
