@@ -1,0 +1,57 @@
+.tela-transfere h1 {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    color: #3E3E3E;
+    margin-bottom: 35px;
+}
+
+.tela-transfere {
+    width: 931px;
+    margin-top: 50px;
+}
+
+.item-1 {
+    display: flex;
+}
+
+.title-1 {
+    width: 931px;
+    height: 39px;
+    background: #FF9E33;
+    border-radius: 4px;
+    display: flex;
+}
+
+.title-1 p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+
+    margin-bottom: 0px;
+    margin-top: 6px;
+
+    padding-left: 26px;
+    color: #FFFFFF;
+}
+
+.quadrado1 {
+    width: 40px;
+    height: 40px;
+
+    background: #FF9E33;
+    border-radius: 4px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-right: 7px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

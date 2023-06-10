@@ -14,6 +14,7 @@ import { useState } from 'react';
 import TelaSaldoPoupanca from '../TelaSaldo/ContaPoupanca';
 import TelaSaldoCorrente from '../TelaSaldo/ContaCorrente';
 import TelaContatos from '../TelaContatos';
+import TelaTransferir from '../TelaTransferir';
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -226,7 +227,7 @@ function EntradaCliente() {
                     {/*Opções de Transferencia*/}
                     <div className='EntradaCliente-container-opcoes-2-2-1'>
                         <div className='EntradaCliente-container-opcoes-2-1-transferencias'>
-                            <p>Transferir</p>
+                            <p onClick={() => alternarTela('tela6')} >Transferir</p>
                         </div>
                        
                     </div>
@@ -246,6 +247,7 @@ function EntradaCliente() {
                     {telaAtual === 'tela3' && <TelaSaldoPoupanca />}
                     {telaAtual === 'tela4' && <TelaSaldoCorrente />}
                     {telaAtual === 'tela5' && <TelaContatos />}
+                    {telaAtual === 'tela6' && <TelaTransferir />}
                 </div>
             </div>
         </div>
