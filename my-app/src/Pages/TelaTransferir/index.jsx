@@ -11,6 +11,16 @@ const TelaTransferir = () => {
         setText(newText);
     }
 
+    const [showParte2, setShowParte2] = useState(false);
+
+    const handleClick = () => {
+        setShowParte2(true);
+    };
+
+    const handleClickAlterar = () => {
+        setShowParte2(false);
+      };
+
     const charCount = text.length;
     return (
         <div className="tela-transfere">
@@ -80,7 +90,102 @@ const TelaTransferir = () => {
                 </div>
 
             </div>
+
+            <div className="btn-prox">
+                <button id="btnProx" onClick={handleClick} >Próximo</button>
+            </div>
+
+            {showParte2 && (
+                <div className="parte2-confimar">
+                    <div className="item-1-confirmar">
+                        <div className="quadrado1">2</div>
+                        <div className="title-1">
+                            <p>Confirme os dados</p>
+                        </div>
+                    </div>
+
+                    <div className="dados-confirmar">
+                        <div className="dados-transferencia">
+                            <p className="p-title">Dados da Transferência</p>
+                            <p className="p-body">Conta de origem: { } </p>
+                        </div>
+
+                        <div className="dados">
+                            <div className="dados-1">
+                                <span>
+                                    Nome Destinatário
+                                </span>
+
+                                <span className="span-destinatario">
+                                    Carolina Roger
+                                </span>
+
+                                <span>
+                                    Conta Destinatário
+                                </span>
+
+                                <span className="span-destinatario">
+                                    12345689-8
+                                </span>
+                            </div>
+
+                            <div className="dados-2">
+
+                                <span>
+                                    Banco
+                                </span>
+
+                                <span className="span-destinatario">
+                                    Banco Estado
+                                </span>
+
+                                <span>
+                                    Descrição
+                                </span>
+
+                                <span className="span-destinatario">
+                                    Supermercado
+                                </span>
+
+                            </div>
+
+                            <div className="dados-3">
+
+                                <span>
+                                    Valor
+                                </span>
+
+                                <span className="span-destinatario">
+                                    $ 15.000
+                                </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div className="botoes-voltar-confirmar">
+
+                        <div className="btn-prox">
+                            <button id="btnProx" onClick={handleClickAlterar} >Alterar</button>
+                        </div>
+                        <div className="btn-prox">
+                            <button id="btnProx">Confirmar</button>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            )}
+
+
         </div>
+
+
     );
 }
 

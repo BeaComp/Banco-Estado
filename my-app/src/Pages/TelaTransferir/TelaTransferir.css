@@ -177,3 +177,100 @@
 
     padding-top: 14px;
 }
+
+.btn-prox {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#btnProx {
+    width: 102px;
+    height: 36px;
+
+    background: #FD8C0C;
+    border-radius: 4px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+
+.item-1-confirmar {
+    margin-top: 25px;
+    display: flex;
+}
+
+.dados-confirmar {
+    width: 927px;
+    height: 190px;
+    background-color: #EEEEEE;
+    margin-top: 21px;
+    border-radius: 5px;
+    padding-left: 25px;
+}
+
+.p-title {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+
+    color: #3E3E3E;
+    padding-bottom: 7px;
+}
+
+.p-body {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+
+    color: #FF9E33;
+}
+
+.dados {
+    margin-right: 25px;
+    margin-top: 15px;
+}
+
+.dados-transferencia {
+    border-bottom: 1px solid #C4C4C4;
+    width: 876px;
+}
+
+.dados-1 > .span-destinatario, .dados-2 > .span-destinatario, .dados-3 > .span-destinatario {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+
+
+    color: #292929;
+}
+
+.dados-1, .dados-2, .dados-3 {
+    display: flex;
+    justify-content: space-between
+}
+
+.dados-1 span, .dados-2 span, .dados-3 span {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+
+    color: #3E3E3E;
+}
+
+.botoes-voltar-confirmar{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 27px;
+    margin-bottom: 27px;
+}
