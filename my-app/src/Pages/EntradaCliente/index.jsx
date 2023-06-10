@@ -179,9 +179,7 @@ function EntradaCliente() {
                         <div className='EntradaCliente-container-opcoes-2-1-transferencias'>
                             <p>Transferir</p>
                         </div>
-                        <div className='EntradaCliente-container-opcoes-2-1-transferencias' id='EntradaCliente-container-opcoes-2-1-transferencias'>
-                            <p>Resumo Transferências</p>
-                        </div>
+                       
                     </div>
                     <div className='EntradaCliente-container-opcoes'>
                         <p>Empréstimos</p>
