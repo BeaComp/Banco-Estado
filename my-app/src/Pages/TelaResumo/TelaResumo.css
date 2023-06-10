@@ -1,7 +1,7 @@
 .tela-resumo {
-    margin-left: 238px;
-    margin-right: 173px;
-    margin-top: 139px;
+    margin-left: 0px;
+    margin-top: 50px;
+    margin-right: 0px;
     display: flex;
     justify-content: space-around;
     gap: 50px;

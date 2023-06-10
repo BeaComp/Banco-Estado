@@ -11,6 +11,8 @@ import { NavLink } from 'react-router-dom';
 import AppBreadcrumbs from '../../components/AppBreadcrumb/AppBreadcrumb';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import TelaSaldoPoupanca from '../TelaSaldo/ContaPoupanca';
+import TelaSaldoCorrente from '../TelaSaldo/ContaCorrente';
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -114,7 +116,7 @@ function EntradaCliente() {
 
             <div className='EntradaCliente-container-principal-topo'>
                 <img className='EntradaCliente-bancoEstado' src={bancoestado} alt="Logo Banco" />
-                <img src={buttonHome} alt="Home" className='buttonHome' />
+                <img  onClick={() => alternarTela('tela1')} src={buttonHome} alt="Home" className='buttonHome' />
             </div>
 
 
@@ -140,12 +142,12 @@ function EntradaCliente() {
                         {/*Opções de Conta corrente - Saldo - movimentos*/}
                         <div className='EntradaCliente-container-opcoes-2-1-1'>
                             <div className='EntradaCliente-container-opcoes-2-1-corrente'>
-                                <p>Saldo</p>
+                                <p  onClick={() => alternarTela('tela4')}>Saldo</p>
                             </div>
 
                             {/*Opções de Conta poupança*/}
                             <div className='EntradaCliente-container-opcoes-2-1-corrente'>
-                                <p>Movimentos</p>
+                                <p  onClick={() => alternarTela('tela2')} >Movimentos</p>
 
                             </div>
                         </div>
@@ -158,12 +160,12 @@ function EntradaCliente() {
 
                         <div className='EntradaCliente-container-opcoes-2-1-2'>
                             <div className='EntradaCliente-container-opcoes-2-1-poupanca'>
-                                <p>Saldo</p>
+                                <p  onClick={() => alternarTela('tela3')} >Saldo</p>
                             </div>
 
                             {/*Opções de Conta poupança*/}
                             <div className='EntradaCliente-container-opcoes-2-1-poupanca'>
-                                <button onClick={() => alternarTela('tela2')} >Movimentos</button>
+                                <p onClick={() => alternarTela('tela2')} >Movimentos</p>
                             </div>
                         </div>
 
@@ -189,12 +191,14 @@ function EntradaCliente() {
                     </div>
                 </div>
 
-                {/* <AppBreadcrumbs/> */}
+                
 
                 <div className='telaresumo'>
 
                     {telaAtual === 'tela1' && <TelaResumo />}
                     {telaAtual === 'tela2' && <TelaMovimentos />}
+                    {telaAtual === 'tela3' && <TelaSaldoPoupanca />}
+                    {telaAtual === 'tela4' && <TelaSaldoCorrente />}
                 </div>
             </div>
         </div>
