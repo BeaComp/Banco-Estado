@@ -274,3 +274,20 @@
     margin-top: 27px;
     margin-bottom: 27px;
 }
+
+.btnVoltar {
+    width: 102px;
+    height: 36px;
+
+    background: #FD8C0C;
+    border-radius: 4px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+
+    text-align: center;
+
+    color: #FFFFFF;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import './TelaTransferir.css';
 import { useState } from 'react';
+import TelaComprovante from "../TelaComprovante";
 
 
 const TelaTransferir = () => {
@@ -19,7 +20,21 @@ const TelaTransferir = () => {
 
     const handleClickAlterar = () => {
         setShowParte2(false);
-      };
+
+    };
+
+    const [exibirComprovante, setExibirComprovante] = useState(false);
+
+    const handleConfirmarClick = () => {
+        setExibirComprovante(true);
+    };
+
+    const handleVoltarClick = () => {
+        setExibirComprovante(false);
+        setShowParte2(false);
+    };
+
+
 
     const charCount = text.length;
     return (
@@ -170,7 +185,7 @@ const TelaTransferir = () => {
                             <button id="btnProx" onClick={handleClickAlterar} >Alterar</button>
                         </div>
                         <div className="btn-prox">
-                            <button id="btnProx">Confirmar</button>
+                            <button id="btnProx" onClick={handleConfirmarClick}  >Confirmar</button>
                         </div>
 
 
@@ -179,8 +194,19 @@ const TelaTransferir = () => {
 
 
 
+
+
                 </div>
             )}
+
+            {exibirComprovante && (
+                <div>
+                    <button id='btnVoltarTransferir' onClick={handleVoltarClick} className="btnVoltar">Voltar</button>
+                    <TelaComprovante />
+                </div>
+            )}
+
+
 
 
         </div>
