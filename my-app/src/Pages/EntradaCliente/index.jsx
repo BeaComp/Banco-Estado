@@ -106,6 +106,8 @@ function EntradaCliente() {
         var texto3 = document.querySelector('.EntradaCliente-container-opcoes-2-1-poupanca-saldo p')
         var cor = document.querySelector('.EntradaCliente-container-opcoes-contatos')
         var textocor = document.querySelector('.EntradaCliente-container-opcoes-contatos p')
+        var textocor2 = document.querySelector('.EntradaCliente-container-opcoes-Emprestimos p')
+        var cor2 = document.querySelector('.EntradaCliente-container-opcoes-Emprestimos')
         if (tela === 'tela4') {
             texto.style.fontWeight = 'bold';
             texto2.style.fontWeight = 'inherit';
@@ -113,6 +115,9 @@ function EntradaCliente() {
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'rgb(248 245 241)';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
         }
         else if (tela === 'tela2') {
             texto2.style.fontWeight = 'bold';
@@ -121,6 +126,9 @@ function EntradaCliente() {
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'rgb(248 245 241)';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
         }
         else if (tela == 'tela3'){
             texto3.style.fontWeight = 'bold';
@@ -129,6 +137,9 @@ function EntradaCliente() {
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'rgb(248 245 241)';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
         }
         else if (tela == 'tela5') {
             cor.style.backgroundColor = '#FF9E33';
@@ -137,6 +148,20 @@ function EntradaCliente() {
             texto.style.fontWeight = 'inherit';
             texto2.style.fontWeight = 'inherit';
             texto3.style.fontWeight = 'inherit';
+            cor2.style.backgroundColor = 'rgb(248 245 241)';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
+        }
+        else if (tela == 'tela7'){
+            cor2.style.backgroundColor = '#FF9E33';
+            textocor2.style.fontWeight = 'bold';
+            textocor2.style.color = '#FFFFFF';
+            texto.style.fontWeight = 'inherit';
+            texto2.style.fontWeight = 'inherit';
+            texto3.style.fontWeight = 'inherit';
+            cor.style.backgroundColor = 'inherit';
+            textocor.style.fontWeight = 'inherit';
+            textocor.style.color = '#3E3E3E';
         }
         else {
             texto.style.fontWeight = 'inherit';
@@ -145,6 +170,9 @@ function EntradaCliente() {
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'rgb(248 245 241)';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
         }
     };
 
@@ -232,7 +260,7 @@ function EntradaCliente() {
                         </div>
                        
                     </div>
-                    <div className='EntradaCliente-container-opcoes'>
+                    <div className='EntradaCliente-container-opcoes-Emprestimos'>
                         <p onClick={() => alternarTela('tela7')} >Empréstimos</p>
                     </div>
                     <div className='EntradaCliente-container-opcoes-contatos'>

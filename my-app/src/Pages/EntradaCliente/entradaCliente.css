@@ -101,19 +101,20 @@
     font-weight: inherit;
 }
 
-.EntradaCliente-container-opcoes, .EntradaCliente-container-opcoes-contatos {
+.EntradaCliente-container-opcoes, .EntradaCliente-container-opcoes-contatos,
+ .EntradaCliente-container-opcoes-Emprestimos {
     height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-
-.EntradaCliente-container-opcoes-contatos {
     background-color: inherit;
 }
 
+
+
 .EntradaCliente-container-opcoes-1 p, .EntradaCliente-container-opcoes p,
-.EntradaCliente-container-opcoes-contatos p, .EntradaCliente-container-opcoes-2 p {
+.EntradaCliente-container-opcoes-contatos p, .EntradaCliente-container-opcoes-2 p,
+.EntradaCliente-container-opcoes-Emprestimos p{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
