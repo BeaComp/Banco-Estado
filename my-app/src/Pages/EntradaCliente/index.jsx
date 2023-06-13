@@ -15,6 +15,7 @@ import TelaSaldoPoupanca from '../TelaSaldo/ContaPoupanca';
 import TelaSaldoCorrente from '../TelaSaldo/ContaCorrente';
 import TelaContatos from '../TelaContatos';
 import TelaTransferir from '../TelaTransferir';
+import TelaEmprestimo from '../TelaEmprestimos';
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -232,7 +233,7 @@ function EntradaCliente() {
                        
                     </div>
                     <div className='EntradaCliente-container-opcoes'>
-                        <p>Empréstimos</p>
+                        <p onClick={() => alternarTela('tela7')} >Empréstimos</p>
                     </div>
                     <div className='EntradaCliente-container-opcoes-contatos'>
                         <p  onClick={() => alternarTela('tela5')} >Contatos</p>
@@ -248,6 +249,7 @@ function EntradaCliente() {
                     {telaAtual === 'tela4' && <TelaSaldoCorrente />}
                     {telaAtual === 'tela5' && <TelaContatos />}
                     {telaAtual === 'tela6' && <TelaTransferir />}
+                    {telaAtual === 'tela7' && <TelaEmprestimo />}
                 </div>
             </div>
         </div>

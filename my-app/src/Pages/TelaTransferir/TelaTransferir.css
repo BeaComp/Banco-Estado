@@ -67,8 +67,6 @@
 .descricao {
     display: flex;
     flex-direction: column;
-
-
 }
 
 .parte-input {
