@@ -16,6 +16,7 @@ import TelaSaldoCorrente from '../TelaSaldo/ContaCorrente';
 import TelaContatos from '../TelaContatos';
 import TelaTransferir from '../TelaTransferir';
 import TelaEmprestimo from '../TelaEmprestimos';
+import TelaBuscarFuncionario from '../TelaBuscarFuncionario';
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -142,6 +143,10 @@ function EntradaFuncionario() {
     //     }
     // };
 
+    // Função para alternar entre as telas
+    const alternarTela = (tela) => {
+        setTelaAtual(tela)
+    }
 
     return (
         <div className="EntradaCliente">
@@ -180,7 +185,7 @@ function EntradaFuncionario() {
                     {/*Opções de Conta corrente*/}
                     <div className='EntradaCliente-container-opcoes-2-1' >
                         <div className='EntradaCliente-container-opcoes-2'>
-                            <p>Buscar</p>  
+                            <p>Buscar</p>
                             {/* colocar a tela de buscar */}
                         </div>
                     </div>
@@ -190,8 +195,8 @@ function EntradaFuncionario() {
                         {/* onClick={() => alternarTela('tela7')} colocar a tela de Pendencias */}
                         <img id='BtnChevrontransferencia' src={Chevron} alt="Chevron" onClick={AbrirOpcoesPendencias} />
                     </div>
-                     {/*Opções de Pendencias*/}
-                     <div className='EntradaCliente-container-opcoes-2-2-1'>
+                    {/*Opções de Pendencias*/}
+                    <div className='EntradaCliente-container-opcoes-2-2-1'>
                         <div className='EntradaCliente-container-opcoes-2-1-Pendencias'>
                             <p>Transferências Altas</p>
                         </div>
@@ -199,16 +204,19 @@ function EntradaFuncionario() {
                         <div className='EntradaCliente-container-opcoes-2-1-Pendencias'>
                             <p>Empréstimos</p>
                         </div>
-                       
+
                     </div>
                     <div className='EntradaCliente-container-opcoes-contatos'>
                         <p>Contatos</p>
-                         {/* onClick={() => alternarTela('tela7')} colocar a tela de contatosFUncionario */}
+                        {/* onClick={() => alternarTela('tela7')} colocar a tela de contatosFUncionario */}
                     </div>
                 </div>
 
-                
-{/* 
+                <div className='telaresumo'>
+                    {telaAtual === 'tela1' && <TelaBuscarFuncionario />}
+
+                </div>
+                {/* 
                 <div className='telaresumo'>
                     {telaAtual === 'tela1' && <TelaResumo />}
                     {telaAtual === 'tela2' && <TelaMovimentos />}
