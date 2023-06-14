@@ -4,8 +4,12 @@ import entrar from '../img/Frame.svg';
 import imagemhome from './Imagens/Imagem-Home.svg';
 import { useNavigate } from "react-router-dom";
 
+
 function Home() {
     const navigate = useNavigate()
+    
+   
+
     return (
 
       <div className="Home">

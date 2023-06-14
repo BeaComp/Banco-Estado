@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import './login.css';
 
-import logo from '../img/bancoestado-logo.png'
+import './login.css';
+import logo from '../img/bancoestado-logo.png';
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+
 
 function Login() {
-
     const navigate = useNavigate();
     const [nConta, setNConta] = useState("");
     const [password, setPassword] = useState("");
@@ -18,13 +18,11 @@ function Login() {
         setPassword("");
     }
 
-    
 
     return (
         <div className="page-login">
             <div className="quadrado">
             </div>
-
             <div className="login">
                 <img className="imgLogo" src={logo} alt="Banco Estado" />
                 <p className="login-title">Entre com seus dados:</p>
