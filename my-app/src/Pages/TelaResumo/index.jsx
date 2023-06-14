@@ -1,11 +1,5 @@
 import React from "react";
 import './TelaResumo.css';
-import icon from '../img/Icon.svg'
-import { useState } from 'react';
-import TelaMovimentos from "../TelaMovimentos";
-import TelaSaldoCorrente from "../TelaSaldo/ContaCorrente";
-
-
 
 
 const TelaResumo = () => {
