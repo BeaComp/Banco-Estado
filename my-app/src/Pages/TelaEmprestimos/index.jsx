@@ -3,7 +3,7 @@ import './TelaEmprestimo.css';
 
 const TelaEmprestimos = () => {
     return (
-        <div>
+        <div className="tela-emprestimo">
             <div className="emprestimo-container-superior">
                 <div className="emprestimo-container-superior-1">
                     <p>1</p>

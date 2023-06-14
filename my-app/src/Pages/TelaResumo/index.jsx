@@ -35,31 +35,6 @@ const TelaResumo = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="acesso">
-                <h1>Acesso Diretos</h1>
-
-            
-
-                <div className="acesso-itens">
-                    <ul>
-                        <li>
-                            <img src={icon} alt="icon" />
-                            <p >Transferir</p>
-                        </li>
-
-                        <li>
-                            <img src={icon} alt="icon" />
-                            <p> Consultar Saldo</p>
-                        </li>
-
-                        <li>
-                            <img src={icon} alt="icon" />
-                            <p>Movimentos</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     )
 };
