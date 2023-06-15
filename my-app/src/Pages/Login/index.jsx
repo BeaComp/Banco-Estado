@@ -1,4 +1,3 @@
-
 import './login.css';
 import logo from '../img/bancoestado-logo.png';
 import { useNavigate } from "react-router-dom";
@@ -6,9 +5,11 @@ import React, { useEffect, useState } from 'react';
 
 
 
+
+
 function Login() {
     const navigate = useNavigate();
-    const [nConta, setNConta] = useState("");
+    const [nConta, setNConta] = useState();
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e) => {

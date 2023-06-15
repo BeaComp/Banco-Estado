@@ -48,7 +48,7 @@ app.listen(port, () => {
 
 app.get('/usuarios', async (req, res) => {
     try {
-      const { rows } = await pool.query('select * from contas ');
+      const { rows } = await pool.query('select senha from contas ');
       res.json(rows);
       
     } catch (error) {
@@ -61,10 +61,9 @@ app.get('/usuarios', async (req, res) => {
   //insere deste jeito
 
   app.get('/insere', async (req, res) => {
-      const { tentativa } = [req.body];
     try {
       const query = 'insert into contas (id_conta, senha) values ($1, $2)';
-      const valores = [tentativa];
+      const valores = ['7','6453'];
       await pool.query(query, valores);
     } catch (error) {
       console.error('Erro ao executar a consulta', error);

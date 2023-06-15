@@ -9,7 +9,7 @@ const MyComponent = () => {
     try {
         const response = await axios.get("http://localhost:8000/usuarios")
         const data = response.data
-        console.log(data);
+        setData(data);
     } catch (error) {
         console.log(error);
     }
@@ -22,7 +22,13 @@ const MyComponent = () => {
 
   return (
     <div>
-     {data}
+     <h1>{(
+      data.map((data) => (
+        <div className='post' key={data.id}>
+          <h1>{data.senha}</h1>
+        </div>
+      ))
+     )}</h1>
     </div>
   );
 };
