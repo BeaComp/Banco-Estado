@@ -1,3 +1,4 @@
+
 const { Pool } = require('pg');
 
 // Configuração da conexão com o banco de dados
@@ -18,11 +19,24 @@ pool.connect((err) => {
   }
 });
 
+
+
+
+
+
+
 const express = require('express');
 const app = express();
-const port = 3000; // Porta que esta rodando o server
+const port = 8000; // Porta que esta rodando o server
 
 app.use(express.json());
+
+
+// Configurar o cabeçalho Access-Control-Allow-Origin para permitir todas as origens
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // Rota de exemplo
 app.get('/', (req, res) => {
@@ -37,7 +51,7 @@ app.get('/usuarios', async (req, res) => {
     try {
       const { rows } = await pool.query('select * from contas');
       res.json(rows);
-      res.send('to na consulta')
+      
     } catch (error) {
       console.error('Erro ao executar a consulta', error);
       res.status(500).json({ error: 'Erro ao executar a consulta' });
