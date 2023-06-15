@@ -1,11 +1,12 @@
 
 /*header*/
 
-.telaresumo {
+.tela-buscar {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
+    align-items: flex-start;
+    margin-left: 181px;
 }
 
 .EntradaCliente-container-principal-central {

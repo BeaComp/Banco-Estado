@@ -1,14 +1,14 @@
 import React from "react";
-import './TelaBuscarFuncionario.css';
+import './TelaContatoFuncionario.css';
 import iconBuscar from '../img/icon-buscar.svg'
-import TableBuscarFuncionario from "../../components/TableBuscarFuncionario";
+import TableContatoFuncionario from "../../components/TableContatoFuncionario";
 
-function TelaBuscarFuncionario() {
+function TelaContatoFuncionario() {
 
     return (
         <div className="tela-buscar-funcionario">
 
-            <h1>Buscar</h1>
+            <h1>Contatos</h1>
 
             <div className="buscar">
                 <div className="btnBuscar">
@@ -24,10 +24,10 @@ function TelaBuscarFuncionario() {
             </div>
 
             <div className="table">
-                <TableBuscarFuncionario />
+                <TableContatoFuncionario />
             </div>
         </div>
     )
 };
 
-export default TelaBuscarFuncionario;
+export default TelaContatoFuncionario;
