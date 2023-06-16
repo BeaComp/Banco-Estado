@@ -6,7 +6,6 @@
     justify-content: space-around;
     gap: 50px;
     flex-direction: column;
-    width: 900px;
 
 }
 
@@ -60,4 +59,22 @@
 
 #btnBuscar {
     background-color: #F6F6F6;
+}
+
+.btnRejeitar,
+.btnAprovar {
+    width: 73.23px;
+    height: 34px;
+    background: #FD8C0C;
+    border-radius: 4px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-align: center;
+
+
 }
