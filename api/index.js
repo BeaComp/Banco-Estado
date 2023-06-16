@@ -62,7 +62,7 @@ app.get('/usuarios', async (req, res) => {
     try {
       const idConta = req.query.id_conta;
       const senha = req.query.senha;
-      const query = 'select * from contas where id_conta = $1 and senha = $2';
+      const query = 'select * from cliente where Id_conta = $1 and senha = $2';
       const values = [idConta, senha];
       const result = await pool.query(query,values);
       const rows = result.rows;
