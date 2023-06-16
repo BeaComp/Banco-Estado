@@ -16,6 +16,8 @@ import TelaSaldoCorrente from '../TelaSaldo/ContaCorrente';
 import TelaContatos from '../TelaContatos';
 import TelaTransferir from '../TelaTransferir';
 import TelaEmprestimo from '../TelaEmprestimos';
+import id_conta from '../Login';
+
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -93,9 +95,15 @@ function AbrirOpcoestransferencia() {
 }
 
 
+      
 
-function EntradaCliente() {
+function EntradaCliente(props) {
     const [telaAtual, setTelaAtual] = useState('tela1');
+
+    //pegando os dados do localStorage
+    const conta = localStorage.getItem('data');
+    console.log(conta)
+    
 
     // Função para alternar entre as telas
     const alternarTela = (tela) => {

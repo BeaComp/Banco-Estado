@@ -19,11 +19,6 @@ pool.connect((err) => {
 });
 
 
-
-
-
-
-
 const express = require('express');
 const app = express();
 const port = 8000; // Porta que esta rodando o server
@@ -60,12 +55,16 @@ app.get('/usuarios', async (req, res) => {
 
   //insere deste jeito
 
-  app.get('/insere', async (req, res) => {
-      const { tentativa } = [req.body];
+  app.get('/login', async (req, res) => {
+      
     try {
-      const query = 'insert into contas (id_conta, senha) values ($1, $2)';
-      const valores = [tentativa];
-      await pool.query(query, valores);
+      const idConta = req.query.id_conta;
+      const senha = req.query.senha;
+      const query = 'select * from contas where id_conta = $1 and senha = $2';
+      const values = [idConta, senha];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      res.json(rows);
     } catch (error) {
       console.error('Erro ao executar a consulta', error);
       res.status(500).json({ error: 'Erro ao executar a consulta' });
