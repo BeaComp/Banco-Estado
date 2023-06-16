@@ -102,7 +102,7 @@ function EntradaCliente(props) {
 
     //pegando os dados do localStorage
     const conta = localStorage.getItem('data');
-    console.log(conta)
+    console.log(conta);
     
 
     // Função para alternar entre as telas

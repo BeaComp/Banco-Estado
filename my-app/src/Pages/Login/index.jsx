@@ -15,7 +15,7 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const enviando = {id_conta, senha}
+        //const enviando = {id_conta, senha}
         //console.log("dados",enviando);
         try {
             const response = await axios.get('http://localhost:8000/login', {

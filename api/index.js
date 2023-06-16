@@ -6,10 +6,11 @@ const pool = new Pool({
   host: 'localhost',
   database: 'Banco_Estado',
   password: '123456',
-  port: 5432, // ou a porta que você configurou
+  port: 5432, //  porta que configurou o postgree
 });
 
-// Verifica se a conexão com o banco de dados foi estabelecida
+
+// Verificando se a conexão com o banco de dados foi estabelecida
 pool.connect((err) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados', err);
@@ -22,6 +23,10 @@ pool.connect((err) => {
 const express = require('express');
 const app = express();
 const port = 8000; // Porta que esta rodando o server
+
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
 
 app.use(express.json());
 
@@ -37,15 +42,13 @@ app.get('/', (req, res) => {
   res.send('API em execução!');
 });
 
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
-});
+
+// Rotas do sistema ========================================================================================
 
 app.get('/usuarios', async (req, res) => {
     try {
-      const { rows } = await pool.query('select * from contas ');
+      const { rows } = await pool.query('select * from contas');
       res.json(rows);
-      
     } catch (error) {
       console.error('Erro ao executar a consulta', error);
       res.status(500).json({ error: 'Erro ao executar a consulta' });
@@ -53,10 +56,9 @@ app.get('/usuarios', async (req, res) => {
   });
 
 
-  //insere deste jeito
-
+  // Busca para acessar o login
+  
   app.get('/login', async (req, res) => {
-      
     try {
       const idConta = req.query.id_conta;
       const senha = req.query.senha;
