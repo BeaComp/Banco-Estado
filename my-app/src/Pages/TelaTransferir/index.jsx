@@ -1,11 +1,11 @@
-import React from "react";
 import './TelaTransferir.css';
-import { useState } from 'react';
 import TelaComprovante from "../TelaComprovante";
+import React, { useEffect, useState } from "react";
 
 
 const TelaTransferir = () => {
     const [text, setText] = useState('');
+    const [idconta, setIdconta] = useState('');
 
     const handleChange = (event) => {
         const newText = event.target.value;
@@ -34,9 +34,17 @@ const TelaTransferir = () => {
         setShowParte2(false);
     };
 
-
-
     const charCount = text.length;
+
+    useEffect(() => {
+        const storedid = localStorage.getItem('data');
+        if (storedid) {
+            setIdconta(storedid);
+        }
+      }, []);
+
+   
+
     return (
         <div className="tela-transfere">
             <h1>Transferir</h1>
@@ -52,13 +60,7 @@ const TelaTransferir = () => {
 
                     <div className="conta-origem">
                         <label htmlFor="Conta-origem">Conta de Origem</label>
-                        <input
-                            id="conta-origem"
-                            type="text"
-                            name="conta-origem"
-                            placeholder="Ex. 00-023-03687-07"
-
-                        />
+                        <p id='conta-origem'>{idconta}</p>
                     </div>
 
                     <div className="destinatario">
