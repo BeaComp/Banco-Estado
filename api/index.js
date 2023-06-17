@@ -72,5 +72,36 @@ app.get('/usuarios', async (req, res) => {
       res.status(500).json({ error: 'Erro ao executar a consulta' });
     }
   });
+
+  // Busca por saldo e id da conta corrente
+
+  app.get('/SaldoContaCorrente', async (req, res) => {
+    try {
+      const idConta = req.query.id_conta;
+      const query = 'SELECT conta_corrente.saldo, cliente.Id_conta_corrente FROM conta_corrente JOIN cliente ON conta_corrente.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
+      const values = [idConta];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });
  
+   // Busca por saldo e id da conta poupanca
+
+   app.get('/SaldoContaPoupanca', async (req, res) => {
+    try {
+      const idConta = req.query.id_conta;
+      const query = 'SELECT conta_poupanca.saldo, cliente.Id_conta_poupanca FROM conta_poupanca JOIN cliente ON conta_poupanca.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
+      const values = [idConta];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });
   

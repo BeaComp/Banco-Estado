@@ -11,7 +11,6 @@ function Login() {
     const navigate = useNavigate();
     const [id_conta, setNConta] = useState();
     const [senha, setPassword] = useState();
-    const [data, setData] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
