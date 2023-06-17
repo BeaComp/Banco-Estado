@@ -7,6 +7,11 @@ const TelaTransferir = () => {
     const [text, setText] = useState('');
     const [idconta, setIdconta] = useState('');
     const [data, setData] = useState([]);
+    const [idtransferir, setIdtransferir] = useState();
+    const [selectedOption2, setSelectedOption2] = useState('option1');
+    const [valor, setValor] = useState();
+    const [saldo2, setSaldo2] = useState(0);
+
 
     const handleChange = (event) => {
         const newText = event.target.value;
@@ -15,8 +20,49 @@ const TelaTransferir = () => {
 
     const [showParte2, setShowParte2] = useState(false);
 
-    const handleClick = () => {
-        setShowParte2(true);
+
+    const handleOptionChange2 = (event) => {
+        setSelectedOption2(event.target.value);
+        //console.log(event.target.value)
+    };
+
+    const handleClick = async (e) => {
+        const storedid = localStorage.getItem('data');
+            if (storedid) {
+        setIdconta(storedid);
+        }        
+
+        if ( ( saldo2 - valor) > 0 ) {
+            console.log('to aqui dentro')
+        try {  if(selectedOption2 == 'option1') {
+            const response = await axios.get('http://localhost:8000/transferindovalorescorrente', {
+                params: {
+                id_conta: idtransferir,
+                valor: valor
+                }
+                
+            })
+            console.log('conta corrente')
+            } 
+             else if (selectedOption2 == 'option2'){
+                const response = await axios.get('http://localhost:8000/transferindovalorespoupanca', {
+                    params: {
+                    id_conta: idtransferir,
+                    valor: valor
+                     }
+                })
+                console.log('conta poupanca')
+            }
+                setShowParte2(true);
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+
+        } // final do if
+        else {
+            
+           
+        }
     };
 
     const handleClickAlterar = () => {
@@ -37,19 +83,21 @@ const TelaTransferir = () => {
 
     const charCount = text.length;
 
+    //para pegar os valores de conta corrente e poupaça do usuario
+
     const [selectedOption, setSelectedOption] = useState('option1');
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
-        console.log(event.target.value)
-        
+        //console.log(event.target.value)
     };
+    
 
     useEffect(() => {
+        
         const storedid = localStorage.getItem('data');
         if (storedid) {
             setIdconta(storedid);
         }
-
         const fetchData = async () => {
 
             
@@ -59,18 +107,20 @@ const TelaTransferir = () => {
                   id_conta: storedid,
                   }
                 })
-                    console.log(response)
+                    //console.log(response)
                     const saldo = response.data
                     setData(saldo);
+                    setSaldo2(response.data[0].saldo)
                 } else if (selectedOption == 'option2'){
                     const response = await axios.get('http://localhost:8000/SaldoContaPoupanca', {
                   params: {
                   id_conta: storedid,
                   }
                 })
-                    console.log(response)
+                    //console.log(response)
                     const saldo = response.data
                     setData(saldo);
+                    setSaldo2(response.data[0].saldo)
                 }
                 
                 } catch (error) {
@@ -80,6 +130,8 @@ const TelaTransferir = () => {
         fetchData();
       }, [selectedOption]);
 
+
+      
       
 
     return (
@@ -108,6 +160,7 @@ const TelaTransferir = () => {
                             type="text"
                             name="destinatario"
                             placeholder="N° Conta"
+                            onChange={(e) => setIdtransferir(e.target.value)} 
                         />
                     </div>
                     <div className='opcao-conta' id='opcao-conta2'>
@@ -116,6 +169,8 @@ const TelaTransferir = () => {
                             type="radio"
                             value="option1"
                             name="Options"
+                            checked={selectedOption2 === "option1"}
+                            onChange={handleOptionChange2}
                             />
                             Conta corrente
                         </label>
@@ -125,6 +180,8 @@ const TelaTransferir = () => {
                             type="radio"
                             value="option2"
                             name="Options"
+                            checked={selectedOption2 === "option2"}
+                            onChange={handleOptionChange2}
                             />
                             Conta poupança
                         </label>
@@ -136,7 +193,7 @@ const TelaTransferir = () => {
                             type="text"
                             name="valor"
                             placeholder="R$"
-
+                            onChange={(e) => setValor(e.target.value)}
                         />
                     </div>
 
