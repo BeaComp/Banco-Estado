@@ -1,11 +1,12 @@
 import './TelaTransferir.css';
 import TelaComprovante from "../TelaComprovante";
 import React, { useEffect, useState } from "react";
-
+import axios from 'axios';
 
 const TelaTransferir = () => {
     const [text, setText] = useState('');
     const [idconta, setIdconta] = useState('');
+    const [data, setData] = useState([]);
 
     const handleChange = (event) => {
         const newText = event.target.value;
@@ -36,14 +37,50 @@ const TelaTransferir = () => {
 
     const charCount = text.length;
 
+    const [selectedOption, setSelectedOption] = useState('option1');
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+        console.log(event.target.value)
+        
+    };
+
     useEffect(() => {
         const storedid = localStorage.getItem('data');
         if (storedid) {
             setIdconta(storedid);
         }
-      }, []);
 
-   
+        const fetchData = async () => {
+
+            
+            try {  if(selectedOption == 'option1') {
+                const response = await axios.get('http://localhost:8000/SaldoContaCorrente', {
+                  params: {
+                  id_conta: storedid,
+                  }
+                })
+                    console.log(response)
+                    const saldo = response.data
+                    setData(saldo);
+                } else if (selectedOption == 'option2'){
+                    const response = await axios.get('http://localhost:8000/SaldoContaPoupanca', {
+                  params: {
+                  id_conta: storedid,
+                  }
+                })
+                    console.log(response)
+                    const saldo = response.data
+                    setData(saldo);
+                }
+                
+                } catch (error) {
+                    console.error('Erro ao buscar dados:', error);
+                }
+        }      
+        fetchData();
+      }, [selectedOption]);
+
+      
 
     return (
         <div className="tela-transfere">
@@ -61,6 +98,7 @@ const TelaTransferir = () => {
                     <div className="conta-origem">
                         <label htmlFor="Conta-origem">Conta de Origem</label>
                         <p id='conta-origem'>{idconta}</p>
+                        
                     </div>
 
                     <div className="destinatario">
@@ -70,17 +108,34 @@ const TelaTransferir = () => {
                             type="text"
                             name="destinatario"
                             placeholder="N° Conta"
-
                         />
                     </div>
+                    <div className='opcao-conta' id='opcao-conta2'>
+                        <label>
+                            <input
+                            type="radio"
+                            value="option1"
+                            name="Options"
+                            />
+                            Conta corrente
+                        </label>
 
+                        <label>
+                            <input
+                            type="radio"
+                            value="option2"
+                            name="Options"
+                            />
+                            Conta poupança
+                        </label>
+                    </div>  
                     <div className="valor">
                         <label htmlFor="valor">Valor</label>
                         <input
                             id="valor"
                             type="text"
                             name="valor"
-                            placeholder="$"
+                            placeholder="R$"
 
                         />
                     </div>
@@ -92,20 +147,45 @@ const TelaTransferir = () => {
                         <span id="charCount">{charCount}/50</span>
                     </div>
 
-
-
-
-
                 </div>
-
-                <div className="detalhes-conta">
-                    <p className="detalhes-conta-p">Detalhes da Conta</p>
-                    <div className="componentes-detalhes-conta">
-                        <p>Saldo disponível</p>
-                        <p>$ 80.520</p>
+                <div className='container-detalhes-conta'>
+                    <div className="detalhes-conta">
+                        <p className="detalhes-conta-p">Detalhes da Conta</p>
+                        <div className="componentes-detalhes-conta">
+                            <p>Saldo disponível</p>
+                            {(
+                            data.map((data) => (
+                            <div key={data.id}>
+                            <p>R${data.saldo}</p>
+                            </div>
+                        ))
+                        )} 
+                        </div>
                     </div>
-                </div>
+                    <div className='opcao-conta'>
+                        <label>
+                            <input
+                            type="radio"
+                            value="option1"
+                            name="myOptions"
+                            checked={selectedOption === "option1"}
+                            onChange={handleOptionChange}
+                            />
+                            Conta corrente
+                        </label>
 
+                        <label>
+                            <input
+                            type="radio"
+                            value="option2"
+                            name="myOptions"
+                            checked={selectedOption === "option2"}
+                            onChange={handleOptionChange}
+                            />
+                            Conta poupança
+                        </label>
+                    </div>  
+                </div>
             </div>
 
             <div className="btn-prox">

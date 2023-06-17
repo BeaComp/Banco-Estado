@@ -52,10 +52,11 @@ create table funcionario (
 create table transacoes (
 	Id_transacao SERIAL not null,     --chave primaria
 	Valor bigint not null,
-	Data_transacao varchar(10) not null,
+	Data_transacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	Id_conta_corrente_poupanca varchar(14) not null,         
 	valor_atualizado bigint not null,
-	Valor_anterior bigint not null
+	Valor_anterior bigint not null,
+	descricao TEXT
 );
 
 create table emprestimo (
