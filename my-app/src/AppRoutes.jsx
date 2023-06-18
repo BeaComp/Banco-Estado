@@ -10,6 +10,7 @@ import EntradaCliente from './Pages/EntradaCliente';
 import TelaResumo from './Pages/TelaResumo';
 import TelaMovimentos from './Pages/TelaMovimentos';
 import EntradaFuncionario from './Pages/EntradaFuncionario';
+import LoginFuncionario from './Pages/LoginFuncionario';
 
 const AppRoutes = () => {
     return (
@@ -18,7 +19,8 @@ const AppRoutes = () => {
             <Route exact path="/login" element={<Login />} />
             <Route exact path='/Sistema' element = { <EntradaCliente />} />
             <Route exact path='/movimentos' element = { <TelaMovimentos />} />
-            <Route exact path='/funcionario' element = { <EntradaFuncionario />} />
+            <Route exact path='/Loginfuncionario' element = { <LoginFuncionario />} />
+            <Route exact path='/SystemFuncionario' element = { <EntradaFuncionario />} />
         </Routes>
     );
 };

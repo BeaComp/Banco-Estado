@@ -29,10 +29,10 @@
     margin-top: 116px;
 }
 
-#Entrar {
+#EntrarCliente, #EntrarServidor {
     margin-right: 205px;
     margin-top: 116px;
-    width: 126px;
+    width: 161px;
     display: flex;
     height: 41px;
     background: #FF9E33;
@@ -102,3 +102,8 @@
     align-items: center;
     justify-content: center;
     }
+
+.btnsEntrar {
+    display: flex;
+    align-items: center;
+}

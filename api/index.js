@@ -56,7 +56,7 @@ app.get('/usuarios', async (req, res) => {
   });
 
 
-  // Busca para acessar o login
+  // Busca para acessar o login cliente
   
   app.get('/login', async (req, res) => {
     try {
@@ -64,6 +64,23 @@ app.get('/usuarios', async (req, res) => {
       const senha = req.query.senha;
       const query = 'select * from cliente where Id_conta = $1 and senha = $2';
       const values = [idConta, senha];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });
+
+   // Busca para acessar o login funcionario
+  
+   app.get('/Loginfuncionario', async (req, res) => {
+    try {
+      const id_funcionario = req.query.id_funcionario;
+      const senha = req.query.senha;
+      const query = 'select * from funcionario where Id_funcionario = $1 and senha = $2';
+      const values = [id_funcionario, senha];
       const result = await pool.query(query,values);
       const rows = result.rows;
       res.json(rows);

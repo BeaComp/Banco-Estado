@@ -36,7 +36,7 @@ create table Conta_Poupanca (
 );
 
 create table funcionario ( 
-	Id_funcionario SERIAL not null,    --chave primaria
+	Id_funcionario varchar(14) not null,    --chave primaria
 	senha varchar(10) not null,
 	Cargo varchar(50) not null,				
 	Nome_funcionario varchar(100) not null,
