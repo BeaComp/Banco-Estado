@@ -46,79 +46,78 @@ app.get('/', (req, res) => {
 // Rotas do sistema ========================================================================================
 
 app.get('/usuarios', async (req, res) => {
-    try {
-      const { rows } = await pool.query('select * from contas');
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
+  try {
+    const { rows } = await pool.query('select * from contas');
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
 
 
-  // Busca para acessar o login cliente
-  
-  app.get('/login', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const senha = req.query.senha;
-      const query = 'select * from cliente where Id_conta = $1 and senha = $2';
-      const values = [idConta, senha];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
+// Busca para acessar o login cliente
 
-   // Busca para acessar o login funcionario
-  
-   app.get('/Loginfuncionario', async (req, res) => {
-    try {
-      const id_funcionario = req.query.id_funcionario;
-      const senha = req.query.senha;
-      const query = 'select * from funcionario where Id_funcionario = $1 and senha = $2';
-      const values = [id_funcionario, senha];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
+app.get('/login', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const senha = req.query.senha;
+    const query = 'select * from cliente where Id_conta = $1 and senha = $2';
+    const values = [idConta, senha];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
 
-  // Busca por saldo e id da conta corrente
+// Busca para acessar o login funcionario
 
-  app.get('/SaldoContaCorrente', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const query = 'SELECT conta_corrente.saldo, cliente.Id_conta_corrente FROM conta_corrente JOIN cliente ON conta_corrente.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
-      const values = [idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
- 
-   // Busca por saldo e id da conta poupanca
+app.get('/Loginfuncionario', async (req, res) => {
+  try {
+    const id_funcionario = req.query.id_funcionario;
+    const senha = req.query.senha;
+    const query = 'select * from funcionario where Id_funcionario = $1 and senha = $2';
+    const values = [id_funcionario, senha];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
 
-   app.get('/SaldoContaPoupanca', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const query = 'SELECT conta_poupanca.saldo, cliente.Id_conta_poupanca FROM conta_poupanca JOIN cliente ON conta_poupanca.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
-      const values = [idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
-  
+// Busca por saldo e id da conta corrente
+
+app.get('/SaldoContaCorrente', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const query = 'SELECT conta_corrente.saldo, cliente.Id_conta_corrente FROM conta_corrente JOIN cliente ON conta_corrente.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
+    const values = [idConta];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
+
+// Busca por saldo e id da conta poupanca
+
+app.get('/SaldoContaPoupanca', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const query = 'SELECT conta_poupanca.saldo, cliente.Id_conta_poupanca FROM conta_poupanca JOIN cliente ON conta_poupanca.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
+    const values = [idConta];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
