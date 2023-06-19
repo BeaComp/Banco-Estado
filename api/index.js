@@ -57,7 +57,7 @@ app.get('/usuarios', async (req, res) => {
 });
 
 
-// Busca para acessar o login cliente
+// ================================= Busca para acessar o login ==========================================
 
 app.get('/login', async (req, res) => {
   try {
@@ -74,7 +74,7 @@ app.get('/login', async (req, res) => {
   }
 });
 
-// Busca para acessar o login funcionario
+// ========================= Busca para acessar o login funcionario ========================================
 
 app.get('/Loginfuncionario', async (req, res) => {
   try {
@@ -91,7 +91,7 @@ app.get('/Loginfuncionario', async (req, res) => {
   }
 });
 
-// Busca por saldo e id da conta corrente
+// ================================== Busca por saldo e id da conta corrente =======================================
 
 app.get('/SaldoContaCorrente', async (req, res) => {
   try {
@@ -107,7 +107,7 @@ app.get('/SaldoContaCorrente', async (req, res) => {
   }
 });
 
-// Busca por saldo e id da conta poupanca
+// ======================== Busca por saldo e id da conta poupanca ====================================
 
 app.get('/SaldoContaPoupanca', async (req, res) => {
   try {

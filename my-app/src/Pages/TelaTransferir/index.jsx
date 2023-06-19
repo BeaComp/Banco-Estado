@@ -11,7 +11,7 @@ const TelaTransferir = () => {
     const [selectedOption2, setSelectedOption2] = useState('option1');
     const [valor, setValor] = useState();
     const [saldo2, setSaldo2] = useState(0);
-
+    const [nome, setNome] = useState();
 
     const handleChange = (event) => {
         const newText = event.target.value;
@@ -30,7 +30,27 @@ const TelaTransferir = () => {
     // função para iniciar as transferencias
 
     const handleClick = async (e) => {       
+        const storedid = localStorage.getItem('data');
+            if (storedid) {
+        setIdconta(storedid);
+        } 
         if ( (( saldo2 - valor) > 0) && ( valor != 0) ) {
+            
+            try { if(selectedOption == 'option1') {
+                const response = await axios.get('http://localhost:8000/Nome_transferencia', {
+                  params: {
+                  id_conta: storedid,
+                  }
+                })
+                const nome = response.data
+                setNome(nome);
+                console.log(response)
+                    
+                } 
+                } catch (error) {
+                    console.error('Erro ao buscar dados:', error);
+                }
+            
             setShowParte2(true);
         } 
         else if (valor == 0) {
@@ -101,9 +121,6 @@ const TelaTransferir = () => {
             } catch (error) {
                 console.error('Erro ao buscar dados:', error);
             }
-
-
-
     };
 
     const handleVoltarClick = () => {
@@ -186,7 +203,8 @@ const TelaTransferir = () => {
                             type="text"
                             name="destinatario"
                             placeholder="N° Conta"
-                            onChange={(e) => setIdtransferir(e.target.value)} 
+                            onChange={(e) => setIdtransferir(e.target.value) } 
+                            maxLength={7}
                         />
                     </div>
                     <div className='opcao-conta' id='opcao-conta2'>
@@ -292,21 +310,32 @@ const TelaTransferir = () => {
 
                         <div className="dados">
                             <div className="dados-1">
+                                <div>
                                 <span>
                                     Nome Destinatário
                                 </span>
-
+                                </div>
+                                <div className="span-destinatario">
                                 <span className="span-destinatario">
-                                    Carolina Roger
+                                {(
+                                    nome.map((data) => (
+                                    <div id='span-destinatario' key={data.id}>
+                                    <p>{data.nome_cliente}</p>
+                                    </div>
+                                ))
+                                )} 
                                 </span>
-
+                                </div>
+                                <div>
                                 <span>
                                     Conta Destinatário
                                 </span>
-
+                                </div>
+                                <div>
                                 <span className="span-destinatario">
                                 {idtransferir}
                                 </span>
+                                </div>
                             </div>
 
                             <div className="dados-2">
@@ -336,7 +365,7 @@ const TelaTransferir = () => {
                                 </span>
 
                                 <span className="span-destinatario">
-                                    {valor}
+                                    R$ {valor}
                                 </span>
 
                             </div>

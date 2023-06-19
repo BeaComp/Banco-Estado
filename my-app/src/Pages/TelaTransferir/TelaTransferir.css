@@ -247,12 +247,15 @@
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-
-
     color: #292929;
 }
 
-.dados-1, .dados-2, .dados-3 {
+.dados-3 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dados-1, .dados-2 {
     display: flex;
     justify-content: space-between
 }
@@ -325,4 +328,13 @@
 
 #opcao-conta2 {
     margin-left: 0px;
+}
+
+#span-destinatario {
+    font-weight: bold;
+}
+
+.dados-3 span {
+    margin-left: 213px;
+    margin-top: 10px;
 }
