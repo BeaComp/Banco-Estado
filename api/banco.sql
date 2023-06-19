@@ -82,3 +82,54 @@ ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_funcionario) REFERENCES funcionar
 ALTER TABLE emprestimo ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 ALTER TABLE Conta_Poupanca ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
+
+
+------------------------------------------ Funções para transferencia ------------------------------
+
+-- conta corrente para corrente
+
+CREATE OR REPLACE FUNCTION executar_updates_corrente_corrente(p_valor numeric, p_id_conta text, id_transfer text) RETURNS void AS $$
+BEGIN
+    UPDATE conta_corrente SET saldo = p_valor + (select saldo from conta_corrente where id_conta = id_transfer) where id_conta = id_transfer;
+	UPDATE conta_corrente SET saldo = (select saldo from conta_corrente where id_conta = p_id_conta) - p_valor  where id_conta = p_id_conta;
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Erro ao executar o update. Realizando rollback.';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- conta corrente para poupanca
+
+CREATE OR REPLACE FUNCTION executar_updates_corrente_poupanca(p_valor numeric, p_id_conta text, id_transfer text) RETURNS void AS $$
+BEGIN
+    UPDATE conta_poupanca SET saldo = p_valor + (select saldo from conta_poupanca where id_conta = id_transfer) where id_conta = id_transfer;
+	UPDATE conta_corrente SET saldo = (select saldo from conta_corrente where id_conta = p_id_conta) - p_valor  where id_conta = p_id_conta;
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Erro ao executar o update. Realizando rollback.';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- conta poupanca para corrente 
+
+CREATE OR REPLACE FUNCTION executar_updates_poupanca_corrente(p_valor numeric, p_id_conta text, id_transfer text) RETURNS void AS $$
+BEGIN
+    UPDATE conta_corrente SET saldo = p_valor + (select saldo from conta_corrente where id_conta = id_transfer) where id_conta = id_transfer;
+	UPDATE conta_poupanca SET saldo = (select saldo from conta_poupanca where id_conta = p_id_conta) - p_valor  where id_conta = p_id_conta;
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Erro ao executar o update. Realizando rollback.';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- conta poupanca para poupanca
+
+CREATE OR REPLACE FUNCTION executar_updates_poupanca_poupanca(p_valor numeric, p_id_conta text, id_transfer text) RETURNS void AS $$
+BEGIN
+    UPDATE conta_poupanca SET saldo = p_valor + (select saldo from conta_poupanca where id_conta = id_transfer) where id_conta = id_transfer;
+	UPDATE conta_poupanca SET saldo = (select saldo from conta_poupanca where id_conta = p_id_conta) - p_valor  where id_conta = p_id_conta;
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Erro ao executar o update. Realizando rollback.';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;

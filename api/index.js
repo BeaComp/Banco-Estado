@@ -161,29 +161,18 @@ app.get('/ContasCorrenteFuncionario', async (req, res) => {
   });
 
 
-  //'UPDATE conta_corrente SET saldo = $1 + (select saldo from conta_corrente where id_conta = $2) where id_conta = $2'
-  app.get('/transferindovalorescorrente', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const valor = req.query.valor;
-      const query = 'UPDATE conta_corrente SET saldo = $1 + (select saldo from conta_corrente where id_conta = $2) where id_conta = $2';
-      const values = [valor,idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      console.log(result);
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
 
-  app.get('/transferindovalorespoupanca', async (req, res) => {
+// ===================== transferencia =====================================================
+
+  // corrente corrente
+  // $1 valor, $2 conta que esta pagando, $2 conta que recebe
+  app.get('/funcao_updates_corrente_corrente', async (req, res) => {
     try {
-      const idConta = req.query.id_conta;
       const valor = req.query.valor;
-      const query = 'UPDATE conta_poupanca SET saldo = $1 + (select saldo from conta_poupanca where id_conta = $2) where id_conta = $2';
-      const values = [valor,idConta];
+      const idConta1 = req.query.id_conta1;
+      const id_conta = req.query.id_conta;
+      const query = 'select executar_updates_corrente_corrente($1,$2,$3)';
+      const values = [valor,idConta1,id_conta];
       const result = await pool.query(query,values);
       const rows = result.rows;
       console.log(result);
@@ -194,5 +183,74 @@ app.get('/ContasCorrenteFuncionario', async (req, res) => {
     }
   });
   
+  //corrente poupanca
+  // $1 valor, $2 conta que esta pagando, $2 conta que recebe
+  app.get('/funcao_updates_corrente_poupanca', async (req, res) => {
+    try {
+      const valor = req.query.valor;
+      const idConta1 = req.query.id_conta1;
+      const id_conta = req.query.id_conta;
+      const query = 'select executar_updates_corrente_poupanca($1,$2,$3)';
+      const values = [valor,idConta1,id_conta];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      console.log(result);
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });
 
-  
+  //poupanca corrente
+  app.get('/funcao_updates_poupanca_corrente', async (req, res) => {
+    try {
+      const valor = req.query.valor;
+      const idConta1 = req.query.id_conta1;
+      const id_conta = req.query.id_conta;
+      const query = 'select executar_updates_poupanca_corrente($1,$2,$3)';
+      const values = [valor,idConta1,id_conta];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      console.log(result);
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });
+
+  //poupanca poupanca 
+  app.get('/funcao_updates_poupanca_poupanca', async (req, res) => {
+    try {
+      const valor = req.query.valor;
+      const idConta1 = req.query.id_conta1;
+      const id_conta = req.query.id_conta;
+      const query = 'select executar_updates_poupanca_poupanca($1,$2,$3)';
+      const values = [valor,idConta1,id_conta];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      console.log(result);
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });
+
+  // ========================================== fim das transferencias ==================================
+
+  // select para nome da transferencia
+  app.get('/Nome_transferencia', async (req, res) => {
+    try {
+      const idConta = req.query.id_conta;
+      const query = 'SELECT Nome_cliente from cliente where id_conta = $1';
+      const values = [idConta];
+      const result = await pool.query(query,values);
+      const rows = result.rows;
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });

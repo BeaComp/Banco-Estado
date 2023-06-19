@@ -26,44 +26,19 @@ const TelaTransferir = () => {
         //console.log(event.target.value)
     };
 
-    const handleClick = async (e) => {
-        const storedid = localStorage.getItem('data');
-            if (storedid) {
-        setIdconta(storedid);
-        }        
 
-        if ( ( saldo2 - valor) > 0 ) {
-            console.log('to aqui dentro')
-        try {  if(selectedOption2 == 'option1') {
-            const response = await axios.get('http://localhost:8000/transferindovalorescorrente', {
-                params: {
-                id_conta: idtransferir,
-                valor: valor
-                }
-                
-            })
-            console.log(valor)
-            console.log('conta corrente')
-            } 
-             else if (selectedOption2 == 'option2'){
-                const response = await axios.get('http://localhost:8000/transferindovalorespoupanca', {
-                    params: {
-                    id_conta: idtransferir,
-                    valor: valor
-                     }
-                })
-                console.log(valor)
-                console.log('conta poupanca')
-            }
-                setShowParte2(true);
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-            }
+    // função para iniciar as transferencias
 
-        } // final do if
+    const handleClick = async (e) => {       
+        if ( (( saldo2 - valor) > 0) && ( valor != 0) ) {
+            setShowParte2(true);
+        } 
+        else if (valor == 0) {
+            alert("O valor precisa ser maior que 0")
+        }
+        // final do if
         else {
-            
-           
+            alert("Valor indiponivel em sua conta")
         }
     };
 
@@ -74,8 +49,61 @@ const TelaTransferir = () => {
 
     const [exibirComprovante, setExibirComprovante] = useState(false);
 
-    const handleConfirmarClick = () => {
+    const handleConfirmarClick = async (e) => {
         setExibirComprovante(true);
+        const storedid = localStorage.getItem('data');
+            if (storedid) {
+        setIdconta(storedid);
+        } 
+        try {  
+            // transferencia conta corrente -> corrente
+            if((selectedOption2 == 'option1') && (selectedOption == 'option1') ) {
+            const response = await axios.get('http://localhost:8000/funcao_updates_corrente_corrente', {
+                params: {
+                valor: valor,
+                id_conta1: storedid,
+                id_conta: idtransferir,
+                } 
+            })
+            // console.log(response)
+            } 
+             else if ((selectedOption2 == 'option2') && (selectedOption == 'option1')){
+                const response = await axios.get('http://localhost:8000/funcao_updates_corrente_poupanca', {
+                    params: {
+                        valor: valor,
+                        id_conta1: storedid,
+                        id_conta: idtransferir,
+                     }
+                     
+                })
+               // console.log(response)
+            } else if ((selectedOption2 == 'option1') && (selectedOption == 'option2')){
+                const response = await axios.get('http://localhost:8000/funcao_updates_poupanca_corrente', {
+                    params: {
+                        valor: valor,
+                        id_conta1: storedid,
+                        id_conta: idtransferir,
+                     }
+                     
+                })
+                //console.log(response)
+            } else if ((selectedOption2 == 'option2') && (selectedOption == 'option2')){
+                const response = await axios.get('http://localhost:8000/funcao_updates_poupanca_poupanca', {
+                    params: {
+                        valor: valor,
+                        id_conta1: storedid,
+                        id_conta: idtransferir,
+                     }
+                     
+                })
+                //console.log(response)
+            }
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+            }
+
+
+
     };
 
     const handleVoltarClick = () => {
@@ -130,11 +158,7 @@ const TelaTransferir = () => {
                 }
         }      
         fetchData();
-      }, [selectedOption]);
-
-
-      
-      
+      }, [selectedOption]);   
 
     return (
         <div className="tela-transfere">
@@ -263,7 +287,7 @@ const TelaTransferir = () => {
                     <div className="dados-confirmar">
                         <div className="dados-transferencia">
                             <p className="p-title">Dados da Transferência</p>
-                            <p className="p-body">Conta de origem: { } </p>
+                            <p className="p-body">Conta de origem: {idconta} </p>
                         </div>
 
                         <div className="dados">
@@ -281,7 +305,7 @@ const TelaTransferir = () => {
                                 </span>
 
                                 <span className="span-destinatario">
-                                    12345689-8
+                                {idtransferir}
                                 </span>
                             </div>
 
@@ -300,7 +324,7 @@ const TelaTransferir = () => {
                                 </span>
 
                                 <span className="span-destinatario">
-                                    Supermercado
+                                    {text}
                                 </span>
 
                             </div>
@@ -312,7 +336,7 @@ const TelaTransferir = () => {
                                 </span>
 
                                 <span className="span-destinatario">
-                                    $ 15.000
+                                    {valor}
                                 </span>
 
                             </div>
