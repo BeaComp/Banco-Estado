@@ -1,5 +1,9 @@
--- Informações importantes para manter a conexão com o Banco --
+--==================== Informações importantes para manter a conexão com o Banco ==================================
+-- Essas informações estão dentro da pasta index.js, precisa ser colocado as chaves de de acesso de configuração 
+-- do seu banco de dados postgresql
 
+
+--== chaves de acesso ==--
 --    user: 'postgres',
 --    host: 'localhost',
 --    database: 'Banco_Estado',
@@ -18,8 +22,8 @@ create table cliente (
 	Endereco varchar(100) not null,
 	Id_conta varchar(14),  --vai ser chave primaria
 	senha varchar(10) not null,
-	Id_conta_corrente varchar(14),  --vai ser chave primaria
-	Id_conta_poupanca varchar(14),  --vai ser chave primaria 
+	Id_conta_corrente varchar(14) unique,  
+	Id_conta_poupanca varchar(14) unique,   
 	situacao varchar(12) not null  
 );
 
@@ -69,6 +73,8 @@ create table emprestimo (
 	Data_final varchar(10) not null,
 	Parcelas int not null
 );
+--===================================== Alter table ==================================================
+
 
 alter table cliente add primary key (Id_conta);
 alter table Conta_Corrente add primary key (Id_conta,Id_funcionario);
@@ -84,7 +90,11 @@ ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_cont
 ALTER TABLE Conta_Poupanca ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 
 
------------------------------------------- Funções para transferencia ------------------------------
+--======================================== Funções para transferencia ========================================
+-- observação: por causa do tempo eu não modifiquei, mas dá para criar uma função só para atender essa funcionalidade,
+-- pretendo implementar mais tarde.
+
+
 
 -- conta corrente para corrente
 
@@ -134,11 +144,15 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+-- =============================================== Criação da View ===========================================
+
 CREATE VIEW clientesAtivos (Nome, CPF, Telefone, EstadoCivil, Sexo, Nasc, Endereco, Conta, Situacao) as
 select nome_cliente, cpf_cliente, telefone, estado_civil, sexo, data_de_nascimento, endereco, id_conta, situacao
 from cliente where situacao like 'Ativo';
 
 
+-- =============================================== Criação da tabela de backup ===========================================
 
 -- Tabela de Backup dos Clientes Excluidos
 CREATE TABLE clientesExcluidos (
@@ -159,6 +173,8 @@ CREATE TABLE clientesExcluidos (
 
 alter table clientesExcluidos add primary key (Id_conta);
 
+-- =============================================== Criação da trigger ===========================================
+
 
 CREATE TRIGGER backupClientes AFTER DELETE ON cliente FOR EACH ROW EXECUTE FUNCTION backupClientesDeletados();
 
@@ -171,8 +187,7 @@ CREATE FUNCTION backupClientesDeletados() RETURNS TRIGGER AS $$ BEGIN
 END;
 $$ LANGUAGE PLPGSQL;
 
-delete from clientesExcluidos where cpf_cliente = '926-184-073-57'
-select * from clientesExcluidos
-
+--delete from clientesExcluidos where cpf_cliente = '926-184-073-57'
+--select * from clientesExcluidos
 -- exemplo de insert
-insert into cliente values ('Lucas Pereira','926-184-073-57','4316-9782','Casado','M','25/11/1980','Avenida das Castanheiras, 654 - Bairro Alphaville, Cidade Moderna, Estado de Goiás','75962-4','86719','4-769-038-215','2-310-786-549','Ativo');
+--insert into cliente values ('Lucas Pereira','926-184-073-57','4316-9782','Casado','M','25/11/1980','Avenida das Castanheiras, 654 - Bairro Alphaville, Cidade Moderna, Estado de Goiás','75962-4','86719','4-769-038-215','2-310-786-549','Ativo');
