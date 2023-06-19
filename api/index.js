@@ -192,16 +192,24 @@ app.get('/SaldoContaPoupanca', async (req, res) => {
     }
   });
   
-
-
-    const result = await pool.query(query);
-    console.log(result)
-    const rows = result.rows;
-
-    res.json(rows);
-  } catch (error) {
-    console.error('Erro ao executar a consulta', error);
-    res.status(500).json({ error: 'Erro ao executar a consulta' });
-  }
-});
-
+  app.get('/clientesAtivos', async (req, res) => {
+    try {
+  
+  
+      const query = `
+        SELECT nome, cpf, telefone, EstadoCivil,
+        sexo, nasc, conta, situacao, endereco 
+        FROM clientesAtivos
+        `;
+  
+  
+      const result = await pool.query(query);
+      console.log(result)
+      const rows = result.rows;
+  
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao executar a consulta', error);
+      res.status(500).json({ error: 'Erro ao executar a consulta' });
+    }
+  });
