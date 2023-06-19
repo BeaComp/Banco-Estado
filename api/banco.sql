@@ -26,13 +26,13 @@ create table cliente (
 create table Conta_Corrente (             
 	Id_conta varchar(14), --chave estrangeira 
     saldo bigint not null,
-	Id_funcionario int not null     
+	Id_funcionario varchar(14) not null     
 );
 
 create table Conta_Poupanca (             
 	Id_conta varchar(14) , --chave estrangeira 
     saldo bigint not null,
-	Id_funcionario int not null     
+	Id_funcionario varchar(14) not null     
 );
 
 create table funcionario ( 
