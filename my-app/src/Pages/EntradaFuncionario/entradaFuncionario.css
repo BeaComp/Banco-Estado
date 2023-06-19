@@ -103,7 +103,7 @@
 }
 
 .EntradaCliente-container-opcoes, .EntradaCliente-container-opcoes-contatos,
- .EntradaCliente-container-opcoes-Pendencias {
+ .EntradaCliente-container-opcoes-Pendencias, .EntradaCliente-container-opcoes-ativos {
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -115,7 +115,7 @@
 
 .EntradaCliente-container-opcoes-1 p, .EntradaCliente-container-opcoes p,
 .EntradaCliente-container-opcoes-contatos p, .EntradaCliente-container-opcoes-2 p,
-.EntradaCliente-container-opcoes-Pendencias p{
+.EntradaCliente-container-opcoes-Pendencias p, .EntradaCliente-container-opcoes-ativos p{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;

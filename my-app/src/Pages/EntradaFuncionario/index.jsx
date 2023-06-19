@@ -9,6 +9,7 @@ import TelaBuscarFuncionario from '../TelaBuscarFuncionario';
 import TelaContatoFuncionario from '../TelaContatoFuncionario';
 import TelaTransferenciasAltasFuncionario from '../TelaTransferenciasAltaFuncionario';
 import TelaEmprestimosAltosFuncionario from '../TelaEmprestimosAltos';
+import TelaAtivosClientes from '../TelaAtivosClientes';
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -62,11 +63,16 @@ function EntradaFuncionario() {
 
         var cor = document.querySelector('.EntradaCliente-container-opcoes-contatos')
         var textocor = document.querySelector('.EntradaCliente-container-opcoes-contatos p')
+        var cor2 = document.querySelector('.EntradaCliente-container-opcoes-ativos')
+        var textocor2 = document.querySelector('.EntradaCliente-container-opcoes-ativos p')
        
         if (tela === 'tela1') {
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'inherit';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
            
            
         }
@@ -74,24 +80,45 @@ function EntradaFuncionario() {
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'inherit';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
+            
+        }
+        else if (tela === 'tela5') {
+            cor.style.backgroundColor = 'inherit';
+            textocor.style.fontWeight = 'inherit';
+            textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = '#FF9E33';
+            textocor2.style.fontWeight = 'bold';
+            textocor2.style.color = '#FFFFFF';
             
         }
         else if (tela == 'tela3'){
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'inherit';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
             
         }
         else if (tela == 'tela2') {
             cor.style.backgroundColor = '#FF9E33';
             textocor.style.fontWeight = 'bold';
             textocor.style.color = '#FFFFFF';
+            cor2.style.backgroundColor = 'inherit';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
            
         }
         else {
             cor.style.backgroundColor = 'inherit';
             textocor.style.fontWeight = 'inherit';
             textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'inherit';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
            
         }
     };
@@ -159,6 +186,12 @@ function EntradaFuncionario() {
                         </div>
 
                     </div>
+
+                    <div className='EntradaCliente-container-opcoes-ativos'>
+                        <p onClick={() => alternarTela('tela5')} className='EntradaCliente-container-opcoes-ativos p'>Ativos</p>
+                        {/* onClick={() => alternarTela('tela7')} colocar a tela de contatosFUncionario */}
+                    </div>
+
                     <div className='EntradaCliente-container-opcoes-contatos'>
                         <p onClick={() => alternarTela('tela2')} className='EntradaCliente-container-opcoes-contatos p'>Contatos</p>
                         {/* onClick={() => alternarTela('tela7')} colocar a tela de contatosFUncionario */}
@@ -170,18 +203,10 @@ function EntradaFuncionario() {
                     {telaAtual === 'tela2' && <TelaContatoFuncionario />}
                     {telaAtual === 'tela3' && <TelaTransferenciasAltasFuncionario />}
                     {telaAtual === 'tela4' && <TelaEmprestimosAltosFuncionario />}
+                    {telaAtual === 'tela5' && <TelaAtivosClientes />}
 
                 </div>
-                {/* 
-                <div className='telaresumo'>
-                    {telaAtual === 'tela1' && <TelaResumo />}
-                    {telaAtual === 'tela2' && <TelaMovimentos />}
-                    {telaAtual === 'tela3' && <TelaSaldoPoupanca />}
-                    {telaAtual === 'tela4' && <TelaSaldoCorrente />}
-                    {telaAtual === 'tela5' && <TelaContatos />}
-                    {telaAtual === 'tela6' && <TelaTransferir />}
-                    {telaAtual === 'tela7' && <TelaEmprestimo />}
-                </div> */}
+               
             </div>
         </div>
 

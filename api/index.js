@@ -146,51 +146,71 @@ app.get('/ContasCorrenteFuncionario', async (req, res) => {
   }
 });
 
-   app.get('/SaldoContaPoupanca', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const query = 'SELECT conta_poupanca.saldo, cliente.Id_conta_poupanca FROM conta_poupanca JOIN cliente ON conta_poupanca.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
-      const values = [idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
+app.get('/SaldoContaPoupanca', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const query = 'SELECT conta_poupanca.saldo, cliente.Id_conta_poupanca FROM conta_poupanca JOIN cliente ON conta_poupanca.id_conta = cliente.id_conta WHERE cliente.id_conta = $1';
+    const values = [idConta];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
 
-  app.get('/transferindovalorescorrente', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const valor = req.query.valor;
-      const query = 'UPDATE conta_corrente SET saldo = $1 where id_conta = $2';
-      const values = [valor,idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      console.log(result);
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
+app.get('/transferindovalorescorrente', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const valor = req.query.valor;
+    const query = 'UPDATE conta_corrente SET saldo = $1 where id_conta = $2';
+    const values = [valor, idConta];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    console.log(result);
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
 
-  app.get('/transferindovalorespoupanca', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const valor = req.query.valor;
-      const query = 'UPDATE conta_poupanca SET saldo = $1 where id_conta = $2';
-      const values = [valor,idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      console.log(result);
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
-  
+app.get('/transferindovalorespoupanca', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const valor = req.query.valor;
+    const query = 'UPDATE conta_poupanca SET saldo = $1 where id_conta = $2';
+    const values = [valor, idConta];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    console.log(result);
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
 
-  
+app.get('/clientesAtivos', async (req, res) => {
+  try {
+
+
+    const query = `
+      SELECT nome, cpf, telefone, EstadoCivil,
+      sexo, nasc, conta, situacao, endereco 
+      FROM clientesAtivos
+      `;
+
+
+    const result = await pool.query(query);
+    console.log(result)
+    const rows = result.rows;
+
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
+

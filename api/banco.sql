@@ -82,3 +82,9 @@ ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_funcionario) REFERENCES funcionar
 ALTER TABLE emprestimo ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 ALTER TABLE Conta_Poupanca ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
+
+
+
+CREATE VIEW clientesAtivos (Nome, CPF, Telefone, EstadoCivil, Sexo, Nasc, Endereco, Conta, Situacao) as
+select nome_cliente, cpf_cliente, telefone, estado_civil, sexo, data_de_nascimento, endereco, id_conta, situacao
+from cliente where situacao like 'Ativo';
