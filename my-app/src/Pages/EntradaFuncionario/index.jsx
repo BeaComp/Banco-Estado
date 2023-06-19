@@ -10,6 +10,7 @@ import TelaContatoFuncionario from '../TelaContatoFuncionario';
 import TelaTransferenciasAltasFuncionario from '../TelaTransferenciasAltaFuncionario';
 import TelaEmprestimosAltosFuncionario from '../TelaEmprestimosAltos';
 import TelaAtivosClientes from '../TelaAtivosClientes';
+import TelaInativarClientes from '../TelaInativarClientes';
 
 function AbrirOpcoes1() {
     var ChevronContas = document.querySelector('.EntradaCliente-container-opcoes-2-1');
@@ -65,6 +66,9 @@ function EntradaFuncionario() {
         var textocor = document.querySelector('.EntradaCliente-container-opcoes-contatos p')
         var cor2 = document.querySelector('.EntradaCliente-container-opcoes-ativos')
         var textocor2 = document.querySelector('.EntradaCliente-container-opcoes-ativos p')
+        var cor3 = document.querySelector('.EntradaCliente-container-opcoes-inativar')
+        var textocor3 = document.querySelector('.EntradaCliente-container-opcoes-inativar p')
+       
        
         if (tela === 'tela1') {
             cor.style.backgroundColor = 'inherit';
@@ -73,6 +77,9 @@ function EntradaFuncionario() {
             cor2.style.backgroundColor = 'inherit';
             textocor2.style.fontWeight = 'inherit';
             textocor2.style.color = '#3E3E3E';
+            cor3.style.backgroundColor = 'inherit';
+            textocor3.style.fontWeight = 'inherit';
+            textocor3.style.color = '#3E3E3E';
            
            
         }
@@ -83,6 +90,21 @@ function EntradaFuncionario() {
             cor2.style.backgroundColor = 'inherit';
             textocor2.style.fontWeight = 'inherit';
             textocor2.style.color = '#3E3E3E';
+            cor3.style.backgroundColor = 'inherit';
+            textocor3.style.fontWeight = 'inherit';
+            textocor3.style.color = '#3E3E3E';
+            
+        }
+        else if (tela === 'tela6') {
+            cor.style.backgroundColor = 'inherit';
+            textocor.style.fontWeight = 'inherit';
+            textocor.style.color = '#3E3E3E';
+            cor2.style.backgroundColor = 'inherit';
+            textocor2.style.fontWeight = 'inherit';
+            textocor2.style.color = '#3E3E3E';
+            cor3.style.backgroundColor = '#FF9E33';
+            textocor3.style.fontWeight = 'bold';
+            textocor3.style.color = '#FFFFFF';
             
         }
         else if (tela === 'tela5') {
@@ -92,6 +114,9 @@ function EntradaFuncionario() {
             cor2.style.backgroundColor = '#FF9E33';
             textocor2.style.fontWeight = 'bold';
             textocor2.style.color = '#FFFFFF';
+            cor3.style.backgroundColor = 'inherit';
+            textocor3.style.fontWeight = 'inherit';
+            textocor3.style.color = '#3E3E3E';
             
         }
         else if (tela == 'tela3'){
@@ -101,6 +126,9 @@ function EntradaFuncionario() {
             cor2.style.backgroundColor = 'inherit';
             textocor2.style.fontWeight = 'inherit';
             textocor2.style.color = '#3E3E3E';
+            cor3.style.backgroundColor = 'inherit';
+            textocor3.style.fontWeight = 'inherit';
+            textocor3.style.color = '#3E3E3E';
             
         }
         else if (tela == 'tela2') {
@@ -110,6 +138,9 @@ function EntradaFuncionario() {
             cor2.style.backgroundColor = 'inherit';
             textocor2.style.fontWeight = 'inherit';
             textocor2.style.color = '#3E3E3E';
+            cor3.style.backgroundColor = 'inherit';
+            textocor3.style.fontWeight = 'inherit';
+            textocor3.style.color = '#3E3E3E';
            
         }
         else {
@@ -119,6 +150,9 @@ function EntradaFuncionario() {
             cor2.style.backgroundColor = 'inherit';
             textocor2.style.fontWeight = 'inherit';
             textocor2.style.color = '#3E3E3E';
+            cor3.style.backgroundColor = 'inherit';
+            textocor3.style.fontWeight = 'inherit';
+            textocor3.style.color = '#3E3E3E';
            
         }
     };
@@ -192,6 +226,11 @@ function EntradaFuncionario() {
                         {/* onClick={() => alternarTela('tela7')} colocar a tela de contatosFUncionario */}
                     </div>
 
+                    <div className='EntradaCliente-container-opcoes-inativar'>
+                        <p onClick={() => alternarTela('tela6')} className='EntradaCliente-container-opcoes-inativar p'>Inativar</p>
+                        {/* onClick={() => alternarTela('tela7')} colocar a tela de contatosFUncionario */}
+                    </div>
+
                     <div className='EntradaCliente-container-opcoes-contatos'>
                         <p onClick={() => alternarTela('tela2')} className='EntradaCliente-container-opcoes-contatos p'>Contatos</p>
                         {/* onClick={() => alternarTela('tela7')} colocar a tela de contatosFUncionario */}
@@ -204,6 +243,7 @@ function EntradaFuncionario() {
                     {telaAtual === 'tela3' && <TelaTransferenciasAltasFuncionario />}
                     {telaAtual === 'tela4' && <TelaEmprestimosAltosFuncionario />}
                     {telaAtual === 'tela5' && <TelaAtivosClientes />}
+                    {telaAtual === 'tela6' && <TelaInativarClientes />}
 
                 </div>
                

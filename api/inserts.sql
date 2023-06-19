@@ -9,6 +9,7 @@ insert into cliente values ('Ana Souza','893-407-526-15','2087-4953','Solteiro',
 insert into cliente values ('Lucas Pereira','926-184-073-57','4316-9782','Casado','M','25/11/1980','Avenida das Castanheiras, 654 - Bairro Alphaville, Cidade Moderna, Estado de Goiás','75962-4','86719','4-769-038-215','2-310-786-549','Ativo');
 
 
+
 --popula tabela funcionario
 
 -- insert into funcionario (id_funcionario, senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco) values ()

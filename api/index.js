@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+const cors = require('cors');
 
 // Configuração da conexão com o banco de dados
 const pool = new Pool({
@@ -160,56 +161,111 @@ app.get('/SaldoContaPoupanca', async (req, res) => {
   }
 });
 
-  app.get('/transferindovalorescorrente', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const valor = req.query.valor;
-      const query = 'UPDATE conta_corrente SET saldo = $1 where id_conta = $2';
-      const values = [valor,idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      console.log(result);
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
+app.get('/transferindovalorescorrente', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const valor = req.query.valor;
+    const query = 'UPDATE conta_corrente SET saldo = $1 where id_conta = $2';
+    const values = [valor, idConta];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    console.log(result);
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
 
-  app.get('/transferindovalorespoupanca', async (req, res) => {
-    try {
-      const idConta = req.query.id_conta;
-      const valor = req.query.valor;
-      const query = 'UPDATE conta_poupanca SET saldo = $1 where id_conta = $2';
-      const values = [valor,idConta];
-      const result = await pool.query(query,values);
-      const rows = result.rows;
-      console.log(result);
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
-    }
-  });
-  
-  app.get('/clientesAtivos', async (req, res) => {
-    try {
-  
-  
-      const query = `
+app.get('/transferindovalorespoupanca', async (req, res) => {
+  try {
+    const idConta = req.query.id_conta;
+    const valor = req.query.valor;
+    const query = 'UPDATE conta_poupanca SET saldo = $1 where id_conta = $2';
+    const values = [valor, idConta];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+    console.log(result);
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
+
+app.get('/clientesAtivos', async (req, res) => {
+  try {
+
+
+    const query = `
         SELECT nome, cpf, telefone, EstadoCivil,
         sexo, nasc, conta, situacao, endereco 
         FROM clientesAtivos
         `;
-  
-  
-      const result = await pool.query(query);
-      console.log(result)
-      const rows = result.rows;
-  
-      res.json(rows);
-    } catch (error) {
-      console.error('Erro ao executar a consulta', error);
-      res.status(500).json({ error: 'Erro ao executar a consulta' });
+
+
+    const result = await pool.query(query);
+    // console.log(result)
+    const rows = result.rows;
+
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
+
+app.use(cors());
+
+app.delete('/clientesDelete/:cpf', async (req, res) => {
+  try {
+    const cpfCliente = req.params.cpf;
+
+    const deleteContaCorrenteQuery = `
+      DELETE FROM conta_corrente
+      WHERE id_conta IN (
+        SELECT id_conta
+        FROM cliente
+        WHERE CPF_cliente = $1
+      )
+    `;
+
+    const deleteContaPoupancaQuery = `
+      DELETE FROM conta_poupanca
+      WHERE id_conta IN (
+        SELECT id_conta
+        FROM cliente
+        WHERE CPF_cliente = $1
+      )
+    `;
+
+    const deleteClienteQuery = `
+      DELETE FROM cliente
+      WHERE CPF_cliente = $1
+      RETURNING *
+    `;
+
+    const deleteValues = [cpfCliente];
+
+    // Excluir as referências do cliente na tabela conta_corrente
+    await pool.query(deleteContaCorrenteQuery, deleteValues);
+
+    // Excluir as referências do cliente na tabela conta_poupanca
+    await pool.query(deleteContaPoupancaQuery, deleteValues);
+
+    // Excluir o cliente da tabela cliente
+    const deleteResult = await pool.query(deleteClienteQuery, deleteValues);
+    const deletedCliente = deleteResult.rows[0];
+
+    if (deletedCliente) {
+      res.json({ message: 'Cliente excluído com sucesso' });
+    } else {
+      res.status(404).json({ error: 'Cliente não encontrado' });
     }
-  });
+  } catch (error) {
+    console.error('Erro ao excluir o cliente', error);
+    res.status(500).json({ error: 'Erro ao excluir o cliente' });
+  }
+});
+
+
