@@ -42,6 +42,7 @@ const TelaTransferir = () => {
                 }
                 
             })
+            console.log(valor)
             console.log('conta corrente')
             } 
              else if (selectedOption2 == 'option2'){
@@ -51,6 +52,7 @@ const TelaTransferir = () => {
                     valor: valor
                      }
                 })
+                console.log(valor)
                 console.log('conta poupanca')
             }
                 setShowParte2(true);

@@ -160,11 +160,13 @@ app.get('/ContasCorrenteFuncionario', async (req, res) => {
     }
   });
 
+
+  //'UPDATE conta_corrente SET saldo = $1 + (select saldo from conta_corrente where id_conta = $2) where id_conta = $2'
   app.get('/transferindovalorescorrente', async (req, res) => {
     try {
       const idConta = req.query.id_conta;
       const valor = req.query.valor;
-      const query = 'UPDATE conta_corrente SET saldo = $1 where id_conta = $2';
+      const query = 'UPDATE conta_corrente SET saldo = $1 + (select saldo from conta_corrente where id_conta = $2) where id_conta = $2';
       const values = [valor,idConta];
       const result = await pool.query(query,values);
       const rows = result.rows;
@@ -180,7 +182,7 @@ app.get('/ContasCorrenteFuncionario', async (req, res) => {
     try {
       const idConta = req.query.id_conta;
       const valor = req.query.valor;
-      const query = 'UPDATE conta_poupanca SET saldo = $1 where id_conta = $2';
+      const query = 'UPDATE conta_poupanca SET saldo = $1 + (select saldo from conta_poupanca where id_conta = $2) where id_conta = $2';
       const values = [valor,idConta];
       const result = await pool.query(query,values);
       const rows = result.rows;
