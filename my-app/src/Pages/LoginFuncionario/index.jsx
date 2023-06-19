@@ -31,7 +31,7 @@ function LoginFuncionario() {
             if (contateste == id_funcionario && senhateste == senha) {
                 {navigate('/SystemFuncionario')}
                 //passando o id da conta pelo localStorage
-                localStorage.setItem('data', id_funcionario);
+                localStorage.setItem('idFuncionario', id_funcionario);
             }else {
                 alert("Conta ou senha incorretos")
             }

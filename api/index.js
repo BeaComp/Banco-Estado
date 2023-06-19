@@ -121,3 +121,28 @@ app.get('/SaldoContaPoupanca', async (req, res) => {
     res.status(500).json({ error: 'Erro ao executar a consulta' });
   }
 });
+
+
+app.get('/ContasCorrenteFuncionario', async (req, res) => {
+  try {
+    const idFuncionario = req.query.idFuncionario;
+
+    const query = `
+      SELECT DISTINCT c.Nome_cliente, cc.Id_conta AS Conta_Corrente, c.CPF_cliente, c.Telefone
+      FROM funcionario f
+      INNER JOIN Conta_Corrente cc ON f.Id_funcionario = cc.Id_funcionario
+      INNER JOIN cliente c ON cc.Id_conta = c.Id_conta
+      WHERE f.Id_funcionario = $1
+    `;
+    console.log(req.params)
+    const values = [idFuncionario];
+    const result = await pool.query(query, values);
+    const rows = result.rows;
+
+    res.json(rows);
+  } catch (error) {
+    console.error('Erro ao executar a consulta', error);
+    res.status(500).json({ error: 'Erro ao executar a consulta' });
+  }
+});
+
