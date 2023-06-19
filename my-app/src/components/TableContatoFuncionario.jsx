@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 
-const TableContatoFuncionario = () => {
+const TableContatoFuncionario = ({ busca }) => {
 
-    // constructor (props) {
-    //     super(props)
+    const [clientes, setClientes] = useState([]);
 
-    //     this.state = {
-    //         clientes : []
-    //     }
-    // }
+
+
+    useEffect(() => {
+        const idFuncionario = localStorage.getItem('idFuncionario');
+
+        const fetchData = async () => {
+            try {
+
+                const response = await axios.get('http://localhost:8000/ContasCorrenteFuncionario', {
+                    params: {
+                        idFuncionario: idFuncionario,
+                    }
+                });
+                const data = response.data;
+                setClientes(data);
+            } catch (error) {
+                console.error('Erro ao obter os dados dos clientes', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+    const clientesFiltrados = clientes.filter((cliente) =>
+        cliente.nome_cliente.toLowerCase().includes((busca || '').toLowerCase())
+    );
 
 
     return (
@@ -20,18 +43,20 @@ const TableContatoFuncionario = () => {
                 <tr>
                     <th>Nome</th>
                     <th>Nº Conta</th>
-                    <th>Tipo de Conta</th>
+                    <th>CPF</th>
                     <th>Contato</th>
 
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th>Rosângela</th>
-                    <th>123456-6</th>
-                    <th>Corrente</th>
-                    <th>1235-1235-563</th>
-                </tr>
+                {clientesFiltrados.map((data) => (
+                    <tr key={data.conta_corrente}>
+                        <td>{data.nome_cliente}</td>
+                        <td>{data.conta_corrente}</td>
+                        <td>{data.cpf_cliente}</td>
+                        <td>{data.telefone}</td>
+                    </tr>
+                ))}
 
             </tbody>
         </Table>

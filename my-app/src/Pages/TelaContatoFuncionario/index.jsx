@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import './TelaContatoFuncionario.css';
 import iconBuscar from '../img/icon-buscar.svg'
 import TableContatoFuncionario from "../../components/TableContatoFuncionario";
 
 function TelaContatoFuncionario() {
+    const [busca, setBusca] = useState('');
+
+    const handleBuscaChange = (event) => {
+        setBusca(event.target.value);
+    };
 
     return (
         <div className="tela-buscar-funcionario">
@@ -16,15 +21,16 @@ function TelaContatoFuncionario() {
                         id="buscar"
                         type="text"
                         name="buscar"
-                        placeholder="Buscar"
-
+                        placeholder="Buscar por nome"
+                        value={busca}
+                        onChange={handleBuscaChange}
                     />
                     <button id="btnBuscar"><img src={iconBuscar} alt="Botao Buscar" /></button>
                 </div>
             </div>
 
             <div className="table">
-                <TableContatoFuncionario />
+                <TableContatoFuncionario busca={busca} />
             </div>
         </div>
     )

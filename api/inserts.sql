@@ -11,12 +11,12 @@ insert into cliente values ('Lucas Pereira','926-184-073-57','4316-9782','Casado
 
 --popula tabela funcionario
 
--- insert into funcionario (senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco) values ()
-insert into funcionario (senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('51234','Gerente','Fernanda Costa','631-057-482-94','7850-2639','Casado','F','07/10/1994','Rua das Oliveiras, 987 - Bairro Bosque das Oliveiras, Cidade Serrana, Estado de Santa Catarina','Ativo');
-insert into funcionario (senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('98653','Assistente','Gabriel Rodrigues','407-329-815-26','5962-1748','Solteiro','M','23/05/1983','Avenida dos Ipês, 2345 - Bairro Praia Azul, Cidade Litorânea, Estado do Ceará','Ativo');
-insert into funcionario (senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('12457','Assistente','Beatriz Almeida','540-973-281-64','1024-6837','Casado','F','27/01/1998','Travessa dos Pinheiros, 876 - Bairro Residencial dos Lagos, Cidade Tranquila, Estado de Mato Grosso','Ativo');
-insert into funcionario (senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('73980','Gerente','Rafael Lima','862-541-390-75','3769-4158','Solteiro','M','21/04/1985','Rua da Liberdade, 543 - Bairro Centro Cultural, Cidade Moderna, Estado do Paraná','Ativo');
-insert into funcionario (senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('60284','Assistente','Isabela Ferreira','129-758-046-83','9582-6074','Casado','F','19/03/1996','Avenida das Acácias, 789 - Bairro Jardim das Flores, Cidade Serena, Estado de Alagoas','Ativo');
+-- insert into funcionario (id_funcionario, senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco) values ()
+insert into funcionario (id_funcionario, senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('98765', '51234','Gerente','Fernanda Costa','631-057-482-94','7850-2639','Casado','F','07/10/1994','Rua das Oliveiras, 987 - Bairro Bosque das Oliveiras, Cidade Serrana, Estado de Santa Catarina','Ativo');
+insert into funcionario (id_funcionario, senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('24680', '98653','Assistente','Gabriel Rodrigues','407-329-815-26','5962-1748','Solteiro','M','23/05/1983','Avenida dos Ipês, 2345 - Bairro Praia Azul, Cidade Litorânea, Estado do Ceará','Ativo');
+insert into funcionario (id_funcionario, senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('13579', '12457','Assistente','Beatriz Almeida','540-973-281-64','1024-6837','Casado','F','27/01/1998','Travessa dos Pinheiros, 876 - Bairro Residencial dos Lagos, Cidade Tranquila, Estado de Mato Grosso','Ativo');
+insert into funcionario (id_funcionario, senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('56789', '73980','Gerente','Rafael Lima','862-541-390-75','3769-4158','Solteiro','M','21/04/1985','Rua da Liberdade, 543 - Bairro Centro Cultural, Cidade Moderna, Estado do Paraná','Ativo');
+insert into funcionario (id_funcionario, senha,Cargo,Nome_funcionario,CPF_funcionario,Telefone_funcionario,Estado_civil,sexo,Data_de_nascimento,Endereco,situacao) values ('54321', '60284','Assistente','Isabela Ferreira','129-758-046-83','9582-6074','Casado','F','19/03/1996','Avenida das Acácias, 789 - Bairro Jardim das Flores, Cidade Serena, Estado de Alagoas','Ativo');
 
 --popula tabela transacoes 
 
@@ -35,18 +35,17 @@ insert into transacoes (Valor,Data_transacao,Id_conta_corrente_poupanca,valor_at
 
 -- insert into Conta_Corrente values (Id_conta, saldo, Id_funcionario)
 
-insert into Conta_Corrente values ('62483-7','5200','2');
-insert into Conta_Corrente values ('98520-3','7350','3');
-insert into Conta_Corrente values ('30217-5','1234','5');
-insert into Conta_Corrente values ('13645-8','827','2');
-insert into Conta_Corrente values ('75962-4','2432','5');
+insert into Conta_Corrente values ('62483-7','5200','24680');
+insert into Conta_Corrente values ('98520-3','7350','13579');
+insert into Conta_Corrente values ('30217-5','1234','54321');
+insert into Conta_Corrente values ('13645-8','827','24680');
+insert into Conta_Corrente values ('75962-4','2432','54321');
 
 --popula tabela Conta_Poupanca
 
 -- insert into Conta_Poupanca values (Id_conta, saldo, Id_funcionario)
-
-insert into Conta_Poupanca values ('62483-7','0','2');
-insert into Conta_Poupanca values ('98520-3','0','3');
-insert into Conta_Poupanca values ('30217-5','40000','5');
-insert into Conta_Poupanca values ('13645-8','400','2');
-insert into Conta_Poupanca values ('75962-4','130000','5');
+insert into Conta_Poupanca values ('62483-7','0','24680');
+insert into Conta_Poupanca values ('98520-3','0','13579');
+insert into Conta_Poupanca values ('30217-5','40000','54321');
+insert into Conta_Poupanca values ('13645-8','400','24680');
+insert into Conta_Poupanca values ('75962-4','130000','54321');
