@@ -133,3 +133,46 @@ BEGIN
     END IF;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE VIEW clientesAtivos (Nome, CPF, Telefone, EstadoCivil, Sexo, Nasc, Endereco, Conta, Situacao) as
+select nome_cliente, cpf_cliente, telefone, estado_civil, sexo, data_de_nascimento, endereco, id_conta, situacao
+from cliente where situacao like 'Ativo';
+
+
+
+-- Tabela de Backup dos Clientes Excluidos
+CREATE TABLE clientesExcluidos (
+	Nome_cliente varchar(100) not null,
+	CPF_cliente varchar(14) not null UNIQUE,
+	Telefone varchar(10) not null,
+	Estado_civil varchar(8) not null,
+	sexo varchar(2) not null,
+	Data_de_nascimento varchar (10) not null,
+	Endereco varchar(100) not null,
+	Id_conta varchar(14),  --vai ser chave primaria
+	senha varchar(10) not null,
+	Id_conta_corrente varchar(14),  --vai ser chave primaria
+	Id_conta_poupanca varchar(14),  --vai ser chave primaria 
+	data_hora_exclusao TIMESTAMP NOT NULL,
+	situacao varchar(12) not null  
+);
+
+alter table clientesExcluidos add primary key (Id_conta);
+
+
+CREATE TRIGGER backupClientes AFTER DELETE ON cliente FOR EACH ROW EXECUTE FUNCTION backupClientesDeletados();
+
+CREATE FUNCTION backupClientesDeletados() RETURNS TRIGGER AS $$ BEGIN 
+	INSERT INTO clientesExcluidos (Nome_cliente, CPF_cliente, Telefone, Estado_civil, sexo, Data_de_nascimento,
+	Endereco, Id_conta, senha, Id_conta_corrente, Id_conta_poupanca, situacao, data_hora_exclusao) 
+	VALUES (OLD.Nome_cliente, OLD.CPF_cliente, OLD.Telefone, OLD.Estado_civil, OLD.sexo, OLD.Data_de_nascimento,
+	OLD.Endereco, OLD.Id_conta, OLD.senha, OLD.Id_conta_corrente, OLD.Id_conta_poupanca, OLD.situacao, CURRENT_TIMESTAMP);
+	RETURN OLD;
+END;
+$$ LANGUAGE PLPGSQL;
+
+delete from clientesExcluidos where cpf_cliente = '926-184-073-57'
+select * from clientesExcluidos
+
+-- exemplo de insert
+insert into cliente values ('Lucas Pereira','926-184-073-57','4316-9782','Casado','M','25/11/1980','Avenida das Castanheiras, 654 - Bairro Alphaville, Cidade Moderna, Estado de Goiás','75962-4','86719','4-769-038-215','2-310-786-549','Ativo');
