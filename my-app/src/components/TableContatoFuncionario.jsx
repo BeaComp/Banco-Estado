@@ -4,16 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 
-const TableContatoFuncionario = () => {
+const TableContatoFuncionario = ({ busca }) => {
 
     const [clientes, setClientes] = useState([]);
 
+
+
     useEffect(() => {
         const idFuncionario = localStorage.getItem('idFuncionario');
-        
+
         const fetchData = async () => {
             try {
-                
+
                 const response = await axios.get('http://localhost:8000/ContasCorrenteFuncionario', {
                     params: {
                         idFuncionario: idFuncionario,
@@ -29,6 +31,12 @@ const TableContatoFuncionario = () => {
         fetchData();
     }, []);
 
+
+    const clientesFiltrados = clientes.filter((cliente) =>
+        cliente.nome_cliente.toLowerCase().includes((busca || '').toLowerCase())
+    );
+
+
     return (
         <Table striped bordered hover>
             <thead>
@@ -41,7 +49,7 @@ const TableContatoFuncionario = () => {
                 </tr>
             </thead>
             <tbody>
-                {clientes.map((data) => (
+                {clientesFiltrados.map((data) => (
                     <tr key={data.conta_corrente}>
                         <td>{data.nome_cliente}</td>
                         <td>{data.conta_corrente}</td>
