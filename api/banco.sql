@@ -1,9 +1,9 @@
---==================== Informações importantes para manter a conexão com o Banco ==================================
+--========================= Informações importantes para manter a conexão com o Banco =================================
 -- Essas informações estão dentro da pasta index.js, precisa ser colocado as chaves de de acesso de configuração 
 -- do seu banco de dados postgresql
 
 
---== chaves de acesso ==--
+--=========== chaves de acesso ===========--
 --    user: 'postgres',
 --    host: 'localhost',
 --    database: 'Banco_Estado',
@@ -30,13 +30,13 @@ create table cliente (
 create table Conta_Corrente (             
 	Id_conta varchar(14), --chave estrangeira 
     saldo bigint not null,
-	Id_funcionario varchar(14) not null     
+	Id_funcionario varchar(14) not null  --chave estrangeira   
 );
 
 create table Conta_Poupanca (             
 	Id_conta varchar(14) , --chave estrangeira 
     saldo bigint not null,
-	Id_funcionario varchar(14) not null     
+	Id_funcionario varchar(14) not null  --chave estrangeira   
 );
 
 create table funcionario ( 
@@ -66,7 +66,7 @@ create table transacoes (
 create table emprestimo (
 	Id_emprestimo SERIAL not null,    -- chave primaria
 	Id_conta varchar(14) not null,    -- chave estrangeira
-	Id_funcionario int not null,  	  -- chave estrangeira
+	Id_funcionario varchar(14) not null, -- chave estrangeira
   	Valor bigint not null,
 	Taxa_Juros varchar(10) not null,
 	Data_inicio varchar(10) not null,
@@ -86,12 +86,13 @@ alter table emprestimo add primary key (Id_emprestimo,Id_conta,Id_funcionario);
 ALTER TABLE Conta_Poupanca ADD FOREIGN KEY (Id_funcionario) REFERENCES funcionario(Id_funcionario);
 ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_funcionario) REFERENCES funcionario(Id_funcionario);
 ALTER TABLE emprestimo ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
+ALTER TABLE emprestimo ADD FOREIGN KEY (Id_funcionario) REFERENCES REFERENCES funcionario(Id_funcionario);
 ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 ALTER TABLE Conta_Poupanca ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 
 
 --======================================== Funções para transferencia ========================================
--- observação: por causa do tempo eu não modifiquei, mas dá para criar uma função só para atender essa funcionalidade,
+-- observação: por causa do tempo eu não modifiquei, mas dá para criar uma função só para atender a funcionalidade dessas 4,
 -- pretendo implementar mais tarde.
 
 
@@ -152,9 +153,8 @@ select nome_cliente, cpf_cliente, telefone, estado_civil, sexo, data_de_nascimen
 from cliente where situacao like 'Ativo';
 
 
--- =============================================== Criação da tabela de backup ===========================================
+-- =============================================== Criação da tabela de backup =================================
 
--- Tabela de Backup dos Clientes Excluidos
 CREATE TABLE clientesExcluidos (
 	Nome_cliente varchar(100) not null,
 	CPF_cliente varchar(14) not null UNIQUE,
@@ -187,7 +187,40 @@ CREATE FUNCTION backupClientesDeletados() RETURNS TRIGGER AS $$ BEGIN
 END;
 $$ LANGUAGE PLPGSQL;
 
---delete from clientesExcluidos where cpf_cliente = '926-184-073-57'
---select * from clientesExcluidos
--- exemplo de insert
---insert into cliente values ('Lucas Pereira','926-184-073-57','4316-9782','Casado','M','25/11/1980','Avenida das Castanheiras, 654 - Bairro Alphaville, Cidade Moderna, Estado de Goiás','75962-4','86719','4-769-038-215','2-310-786-549','Ativo');
+
+--============================ View criado envolvendo duas tabelas ==============================================
+
+CREATE VIEW conta_funcionario (id_conta, id_funcionario, nome_funcionario)  AS
+SELECT conta_corrente.Id_conta, conta_corrente.Id_funcionario,funcionario.Nome_funcionario
+from conta_corrente join funcionario on conta_corrente.Id_funcionario = funcionario.Id_funcionario
+
+select * from conta_funcionario
+
+
+
+--=========================== Usuario criado apenas para exemplo didatico ========================================
+
+CREATE USER usuario WITH PASSWORD '123456';
+
+GRANT SELECT ON conta_funcionario TO usuario;
+GRANT INSERT ON conta_funcionario TO usuario;
+
+--======================== triger e função criados para inserção na view conta_funcionario ===================================
+
+CREATE TRIGGER atualizar_nome_funcionario
+INSTEAD OF UPDATE ON conta_funcionario
+FOR EACH ROW
+EXECUTE FUNCTION atualizar_nome_funcionario();
+
+
+
+CREATE OR REPLACE FUNCTION atualizar_nome_funcionario()
+RETURNS TRIGGER AS $$
+BEGIN
+  UPDATE funcionario
+  SET nome_funcionario = NEW.nome_funcionario
+  WHERE id_funcionario = NEW.id_funcionario;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
