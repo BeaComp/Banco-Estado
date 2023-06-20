@@ -222,3 +222,10 @@ BEGIN
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
+--======================== indices para buscas ===================================
+
+create index idx_Cliente on cliente(Nome_cliente);
+create index idx_Corrente on Conta_Corrente(Id_conta);
+create index idx_poupanca on Conta_Poupanca(Id_conta);
+create index idx_funcionario on funcionario(Id_funcionario);
