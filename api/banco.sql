@@ -73,6 +73,8 @@ create table emprestimo (
 	Data_final varchar(10) not null,
 	Parcelas int not null
 );
+
+
 --===================================== Alter table ==================================================
 
 
@@ -86,9 +88,30 @@ alter table emprestimo add primary key (Id_emprestimo,Id_conta,Id_funcionario);
 ALTER TABLE Conta_Poupanca ADD FOREIGN KEY (Id_funcionario) REFERENCES funcionario(Id_funcionario);
 ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_funcionario) REFERENCES funcionario(Id_funcionario);
 ALTER TABLE emprestimo ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
-ALTER TABLE emprestimo ADD FOREIGN KEY (Id_funcionario) REFERENCES REFERENCES funcionario(Id_funcionario);
+ALTER TABLE emprestimo ADD FOREIGN KEY (Id_funcionario) REFERENCES funcionario(Id_funcionario);
 ALTER TABLE Conta_Corrente ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
 ALTER TABLE Conta_Poupanca ADD FOREIGN KEY (Id_conta) REFERENCES cliente(Id_conta);
+
+
+-- =============================================== Criação da tabela de backup =================================
+
+CREATE TABLE clientesExcluidos (
+	Nome_cliente varchar(100) not null,
+	CPF_cliente varchar(14) not null UNIQUE,
+	Telefone varchar(10) not null,
+	Estado_civil varchar(8) not null,
+	sexo varchar(2) not null,
+	Data_de_nascimento varchar (10) not null,
+	Endereco varchar(100) not null,
+	Id_conta varchar(14),  --vai ser chave primaria
+	senha varchar(10) not null,
+	Id_conta_corrente varchar(14),  --vai ser chave primaria
+	Id_conta_poupanca varchar(14),  --vai ser chave primaria 
+	data_hora_exclusao TIMESTAMP NOT NULL,
+	situacao varchar(12) not null  
+);
+
+alter table clientesExcluidos add primary key (Id_conta);
 
 
 --======================================== Funções para transferencia ========================================
@@ -153,26 +176,6 @@ select nome_cliente, cpf_cliente, telefone, estado_civil, sexo, data_de_nascimen
 from cliente where situacao like 'Ativo';
 
 
--- =============================================== Criação da tabela de backup =================================
-
-CREATE TABLE clientesExcluidos (
-	Nome_cliente varchar(100) not null,
-	CPF_cliente varchar(14) not null UNIQUE,
-	Telefone varchar(10) not null,
-	Estado_civil varchar(8) not null,
-	sexo varchar(2) not null,
-	Data_de_nascimento varchar (10) not null,
-	Endereco varchar(100) not null,
-	Id_conta varchar(14),  --vai ser chave primaria
-	senha varchar(10) not null,
-	Id_conta_corrente varchar(14),  --vai ser chave primaria
-	Id_conta_poupanca varchar(14),  --vai ser chave primaria 
-	data_hora_exclusao TIMESTAMP NOT NULL,
-	situacao varchar(12) not null  
-);
-
-alter table clientesExcluidos add primary key (Id_conta);
-
 -- =============================================== Criação da trigger ===========================================
 
 
@@ -194,9 +197,6 @@ CREATE VIEW conta_funcionario (id_conta, id_funcionario, nome_funcionario)  AS
 SELECT conta_corrente.Id_conta, conta_corrente.Id_funcionario,funcionario.Nome_funcionario
 from conta_corrente join funcionario on conta_corrente.Id_funcionario = funcionario.Id_funcionario
 
-select * from conta_funcionario
-
-
 
 --=========================== Usuario criado apenas para exemplo didatico ========================================
 
@@ -211,8 +211,6 @@ CREATE TRIGGER atualizar_nome_funcionario
 INSTEAD OF UPDATE ON conta_funcionario
 FOR EACH ROW
 EXECUTE FUNCTION atualizar_nome_funcionario();
-
-
 
 CREATE OR REPLACE FUNCTION atualizar_nome_funcionario()
 RETURNS TRIGGER AS $$

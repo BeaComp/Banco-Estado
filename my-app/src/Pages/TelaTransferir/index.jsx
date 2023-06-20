@@ -36,7 +36,7 @@ const TelaTransferir = () => {
         } 
         if ( (( saldo2 - valor) > 0) && ( valor != 0) ) {
             
-            try { if(selectedOption == 'option1') {
+            try { 
                 const response = await axios.get('http://localhost:8000/Nome_transferencia', {
                   params: {
                   id_conta: storedid,
@@ -44,9 +44,7 @@ const TelaTransferir = () => {
                 })
                 const nome = response.data
                 setNome(nome);
-                console.log(response)
-                    
-                } 
+                console.log(response) 
                 } catch (error) {
                     console.error('Erro ao buscar dados:', error);
                 }
