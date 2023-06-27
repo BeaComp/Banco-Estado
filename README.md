@@ -4,16 +4,23 @@ Projeto elaborado para a disciplina de Banco de Dados 2 da UTFPR-CP
 ➡️ O projeto consiste em um sistema de banco financeiro, até o momento ele consegue fazer transações e buscar.
 
 💻Linguagens usadas:
+
     ✅ REACT
+    
     ✅ HTML
+    
     ✅ CSS
+    
     ✅ POSTGREE
 
 👨‍💻 Desenvolvedores:
+
     Front-end + Back-end: @BeaComp e @RochaUTFPR
 
 💻Design:
+
   O design foi desenvolvido pela @BeaComp (Beatriz Cristina de Faria) no Figma.
+  
   🔗 Link: https://www.figma.com/file/lhFxvAjAE6NrpI3FIut0g4/Projeto-Banco-de-Dados-2?type=design&node-id=0-1&t=k1RzYKkWfoXY7zXk-0 
 
   Prévia do Figma:
