@@ -47,6 +47,23 @@ Projeto elaborado para a disciplina de Banco de Dados 2 da UTFPR-CP
 
 
 
+  
+  
+👨‍💻 --> Para start <--
+
+    Para a api (back-end):
+    
+        cd api
+        npm start
+
+    Para a my-app (aplicação):
+    
+        cd my-app
+        npm install
+        npm start
+
+
+
 
 
 
